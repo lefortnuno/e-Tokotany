@@ -47,86 +47,44 @@ export default function App() {
 			<ToastContainer autoClose={3000} position={toast.POSITION.BOTTOM_RIGHT} />
 			<BrowserRouter>
 				<Routes>
-					<Route index element={<LogOutProtection Cmp={SeConnecter} />} />
+					<Route index element={<SeConnecter />} />
 
-					<Route path="/*" element={<SinInProtected Cmp={PageNotFound} />} />
+					<Route path="/*" element={<PageNotFound />} />
 
-					<Route
-						path="stats/"
-						element={<SinInProtected Cmp={StatisiqueGenerale} />}
-					/>
+					<Route path="stats/" element={<StatisiqueGenerale />} />
 
-					<Route
-						path="nouveauUtilisateur/"
-						element={<SinInProtected Cmp={SEnregistrer} />}
-					/>
-					<Route
-						path="utilisateur/"
-						element={<SinInProtected Cmp={Utilisateur} />}
-					/>
-					<Route path="individu/" element={<SinInProtected Cmp={Individu} />} />
-					<Route
-						path="requerant/"
-						element={<SinInProtected Cmp={Requerant} />}
-					/>
-					<Route path="accueil/" element={<SinInProtected Cmp={Accueil} />} />
-					<Route
-						path="procedure/"
-						element={<SinInProtected Cmp={Procedure} />}
-					/>
-					<Route path="bureau/" element={<SinInProtected Cmp={Bureau} />} />
-					<Route path="dossier/" element={<SinInProtected Cmp={Dossier} />} />
-					<Route
-						path="mesDossiers/"
-						element={<SinInProtected Cmp={DossierAgent} />}
-					/>
+					<Route path="nouveauUtilisateur/" element={<SEnregistrer />} />
+					<Route path="utilisateur/" element={<Utilisateur />} />
+					<Route path="individu/" element={<Individu />} />
+					<Route path="requerant/" element={<Requerant />} />
+					<Route path="accueil/" element={<Accueil />} />
+					<Route path="procedure/" element={<Procedure />} />
+					<Route path="bureau/" element={<Bureau />} />
+					<Route path="dossier/" element={<Dossier />} />
+					<Route path="mesDossiers/" element={<DossierAgent />} />
 					<Route
 						path="viewDossier/:numeroDossier"
-						element={<SinInProtected Cmp={DetailsDossier} />}
+						element={<DetailsDossier />}
 					/>
-					<Route
-						path="nouvelleDemande/"
-						element={<SinInProtected Cmp={NouvelleDemande} />}
-					/>
-					<Route
-						path="nouveauIndividu/"
-						element={<SinInProtected Cmp={AjoutIndividu} />}
-					/>
-					<Route
-						path="nouveauRequerant/"
-						element={<SinInProtected Cmp={AjoutRequerant} />}
-					/>
+					<Route path="nouvelleDemande/" element={<NouvelleDemande />} />
+					<Route path="nouveauIndividu/" element={<AjoutIndividu />} />
+					<Route path="nouveauRequerant/" element={<AjoutRequerant />} />
 
-					<Route
-						path="C_ND/"
-						element={<SinInProtected Cmp={CahierNouvelleDemande} />}
-					/>
-					<Route
-						path="C_RDV/"
-						element={<SinInProtected Cmp={CahierRendezVous} />}
-					/>
-					<Route path="C_A/" element={<SinInProtected Cmp={CahierArriver} />} />
-					<Route path="C_D/" element={<SinInProtected Cmp={CahierDepart} />} />
-					<Route path="C_I/" element={<SinInProtected Cmp={CahierInterne} />} />
+					<Route path="C_ND/" element={<CahierNouvelleDemande />} />
+					<Route path="C_RDV/" element={<CahierRendezVous />} />
+					<Route path="C_A/" element={<CahierArriver />} />
+					<Route path="C_D/" element={<CahierDepart />} />
+					<Route path="C_I/" element={<CahierInterne />} />
 
-					<Route path="maps/" element={<SinInProtected Cmp={MapsForFtsoa} />} />
-					<Route path="terrain/" element={<SinInProtected Cmp={Terrain} />} />
+					<Route path="maps/" element={<MapsForFtsoa />} />
+					<Route path="terrain/" element={<Terrain />} />
 
-					<Route path="PREVISA/" element={<SinInProtected Cmp={PREVISA} />} />
-					<Route path="VISA/" element={<SinInProtected Cmp={VISA} />} />
-					<Route
-						path="validationCompte/"
-						element={<SinInProtected Cmp={UtilisateurEnAttente} />}
-					/>
+					<Route path="PREVISA/" element={<PREVISA />} />
+					<Route path="VISA/" element={<VISA />} />
+					<Route path="validationCompte/" element={<UtilisateurEnAttente />} />
 
-					<Route
-						path="viewTerrain/:numeroTitre"
-						element={<SinInProtected Cmp={DetailsTerrain} />}
-					/>
-					<Route
-						path="viewIndividu/:cin"
-						element={<SinInProtected Cmp={DetailsIndividu} />}
-					/>
+					<Route path="viewTerrain/:numeroTitre" element={<DetailsTerrain />} />
+					<Route path="viewIndividu/:cin" element={<DetailsIndividu />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
