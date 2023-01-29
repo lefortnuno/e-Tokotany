@@ -81,6 +81,10 @@ export default function FormulaireEnregistrement() {
 			file: event.target.files[0],
 			filepreview: URL.createObjectURL(event.target.files[0]),
 		});
+
+		setErreurs((values) => ({ ...values, messageErreur: false }));
+		setErreurs((values) => ({ ...values, photoPDP: false }));
+		isValidate = true;
 	};
 	//#endregion
 
@@ -138,13 +142,6 @@ export default function FormulaireEnregistrement() {
 				setMessages((values) => ({
 					...values,
 					[name]: "Numéro de CIN obligatoire",
-				}));
-			} else if (value.length < 12) {
-				isValidate = false;
-				setErreurs((values) => ({ ...values, [name]: true }));
-				setMessages((values) => ({
-					...values,
-					[name]: "Numéro de CIN trop court",
 				}));
 			} else if (value.length > 12) {
 				isValidate = false;
@@ -217,7 +214,7 @@ export default function FormulaireEnregistrement() {
 		const inputsObligatoire = [
 			"mdp",
 			"identification",
-			"u_cin",
+			"x_u_cin",
 			"mdp",
 			"confirmationMdp",
 		];
@@ -233,7 +230,15 @@ export default function FormulaireEnregistrement() {
 			}
 		});
 
-		console.log("---------", isValidate, "---------");
+		if (picPhotoPDP.file.length === 0) {
+			setErreurs((values) => ({ ...values, photoPDP: true }));
+			setMessages((values) => ({
+				...values,
+				photoPDP: "Veuillez choisir une photo de profile",
+			}));
+			isValidate = false;
+		}
+ 
 		if (isValidate && existanceIndividu) {
 			onSubmit();
 		}
@@ -245,12 +250,8 @@ export default function FormulaireEnregistrement() {
 		const dataInputs = Object.assign(inputs, { roleU: u_info.u_attribut });
 
 		axios.post(URL_DE_BASE, dataInputs, u_info.opts).then(function (response) {
-			console.log(response);
 			if (response.status === 200) {
 				if (response.data.success) {
-					toast.success("Ajout Reussi.");
-
-					console.log(picPhotoPDP.file.length);
 					if (picPhotoPDP.file.length !== 0) {
 						ajoutPhotoPDP();
 					}
@@ -310,7 +311,7 @@ export default function FormulaireEnregistrement() {
 			axios.get(URL_CIN + `apercu/${valeur}`, u_info.opts).then((response) => {
 				if (response.status === 200) {
 					const ux = response.data;
-					console.log(ux);
+
 					if (ux.success) {
 						const u = ux.res;
 
@@ -380,6 +381,9 @@ export default function FormulaireEnregistrement() {
 									autoComplete="off"
 									placeholder="Photo"
 								/>
+								<small className="text-danger d-block">
+									{erreurs.photoPDP ? messages.photoPDP : null}
+								</small>
 							</div>
 
 							<div className="input-field">
@@ -412,7 +416,7 @@ export default function FormulaireEnregistrement() {
 									placeholder="Entrez votre numéro de CIN"
 								/>
 								<small className="text-danger d-block">
-									{erreurs.u_cin ? messages.u_cin : null}
+									{erreurs.x_u_cin ? messages.x_u_cin : null}
 								</small>
 							</div>
 

@@ -4,27 +4,45 @@ const admin = require("../middlewares/admin.middleware");
 const chef = require("../middlewares/chef.middleware");
 const chefAdjoint = require("../middlewares/chef.adjoint.middleware");
 const agent = require("../middlewares/agent.middleware");
+const client = require("../middlewares/client.middleware");
 
 router.post("/seConnecter", utilisateurController.loginUtilisateur);
 router.post("/", utilisateurController.addUtilisateur);
+
 router.get(
 	"/",
-	agent.checkUtilisateur,
+	chefAdjoint.checkUtilisateur,
 	utilisateurController.getAllUtilisateurs
 );
 router.get(
+	"/attenteActivation/",
+	chefAdjoint.checkUtilisateur,
+	utilisateurController.getAttenteActivation
+);
+router.get(
+	"/liseAttenteActivation/",
+	chefAdjoint.checkUtilisateur,
+	utilisateurController.getAllAttenteActivation
+);
+router.get(
 	"/numeroCompte/",
-	agent.checkUtilisateur,
+	client.checkUtilisateur,
 	utilisateurController.getLastNumeroCompteUtilisateur
 );
 router.get(
 	"/:id",
-	agent.checkUtilisateur,
+	client.checkUtilisateur,
 	utilisateurController.getIdUtilisateur
 );
+router.get(
+	"/recherche/:valeur",
+	chefAdjoint.checkUtilisateur,
+	utilisateurController.searchUtilisateurByParams
+);
+
 router.put(
 	"/:id",
-	agent.checkUtilisateur,
+	client.checkUtilisateur,
 	utilisateurController.updateUtilisateur
 );
 router.put(
@@ -33,21 +51,20 @@ router.put(
 	utilisateurController.updateUtilisateurByAdministrateur
 );
 router.put(
+	"/statu/:id",
+	chefAdjoint.checkUtilisateur,
+	utilisateurController.updateUtilisateurStatu
+);
+router.put(
 	"/photoPDP/:id",
-	agent.checkUtilisateur,
+	client.checkUtilisateur,
 	utilisateurController.addPhotoPdp
-); 
+);
 
 router.delete(
 	"/:id",
 	chefAdjoint.checkUtilisateur,
 	utilisateurController.deleteUtilisateur
-);
-
-router.get(
-	"/recherche/:valeur",
-	agent.checkUtilisateur,
-	utilisateurController.searchUtilisateurByParams
 );
 
 module.exports = router;

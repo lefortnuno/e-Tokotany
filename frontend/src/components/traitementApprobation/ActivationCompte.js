@@ -1,29 +1,36 @@
-import axios from "../../../api/axios";
-import getDataUtilisateur from "../../../api/udata";
-import { libraryList, AjoutLibrary } from "../../../api/file.js";
+import axios from "../../api/axios";
+import getDataUtilisateur from "../../api/udata";
+import { libraryList, AjoutLibrary } from "../../api/file.js";
 
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { useNavigate, Link } from "react-router-dom";
-
-import HeaderContext from "../../../contexts/header/header.context";
-import FooterContext from "../../../contexts/footer/footer.context";
-import SidebarContext from "../../../contexts/sidebar/sidebar.context";
-import ModalEdition from "./ModalEdit";
-import DeleteConfirmation from "../../../contexts/ModalSuppr";
+import { useNavigate } from "react-router-dom";
 
 import {
-	PersoRequerant,
 	PersoUtilisateur,
-	NouveauPersoIndividu,
-} from "../perso";
+	PersoIndividu,
+	PersoRequerant,
+	NouveauPersoUtilisateur,
+} from "../personnes/perso";
 
-import { BsFillTrashFill, BsPencilSquare, BsEye } from "react-icons/bs";
+import {
+	BsFillTrashFill,
+	BsFillPersonCheckFill,
+	BsPencilSquare,
+	BsEye,
+} from "react-icons/bs";
 
-const base = `individu`;
-const URL_DE_BASE = base + `/`;
+import HeaderContext from "../../contexts/header/header.context";
+import FooterContext from "../../contexts/footer/footer.context";
+import SidebarContext from "../../contexts/sidebar/sidebar.context";
+import ModalEdition from "../personnes/utilisateurs/ModalEdit";
+import ModalActivation from "../personnes/utilisateurs/ActiverUtilisateur";
+import DeleteConfirmation from "../../contexts/ModalSuppr";
 
-export default function Individu() {
+const base = `utilisateur`;
+const URL_DE_BASE = base + `/liseAttenteActivation`;
+
+export default function UtilisateurEnAttente() {
 	const navigate = useNavigate();
 	const u_info = getDataUtilisateur();
 
@@ -58,6 +65,19 @@ export default function Individu() {
 	};
 	//#endregion
 
+	//#region // MODAL ACTIVER UN UTILISATEUR
+	const [numeroCompteActive, setNumeroCompteActive] = useState("");
+	const [showActive, setShowActive] = useState(false);
+	const showActiveModal = (numeroCompteActive) => {
+		setNumeroCompteActive(numeroCompteActive);
+		setShowActive(true);
+	};
+	const closeActiveModal = () => {
+		getUsers();
+		setShowActive(false);
+	};
+	//#endregion
+
 	//#region //------------MODAL DELETE UTILISATEUR------------
 	const [id, setId] = useState(null);
 	const [displayConfirmationModal, setDisplayConfirmationModal] =
@@ -66,12 +86,12 @@ export default function Individu() {
 	const showDeleteModal = (id) => {
 		setId(id);
 		setDeleteMessage(
-			`Etes vous sûre de vouloir supprimer l'individu If°${
-				users.find((x) => x.cin === id).cin
-			} 
-      ${users.find((x) => x.cin === id).nom} 
+			`Etes vous sûre de vouloir supprimer l'utilisateur N°${
+				users.find((x) => x.numeroCompte === id).numeroCompte
+			} , identifiant :  
+      ${users.find((x) => x.numeroCompte === id).identification}, if°   
       ${
-				users.find((x) => x.cin === id).prenom
+				users.find((x) => x.numeroCompte === id).u_cin
 			} definitivement de notre base de donnée ?`
 		);
 		setDisplayConfirmationModal(true);
@@ -85,15 +105,14 @@ export default function Individu() {
 		axios.delete(URL_DE_BASE + `${id}`, u_info.opts).then(function (response) {
 			getUsers();
 			setDisplayConfirmationModal(false);
-
 			if (response.data.success) {
 				toast.success("Suppression Reussi.");
 			} else if (response.data.errno === 1451) {
 				toast.error(
-					"Suppression non effectuer ! L'individu possede un etat requerant !"
+					"Suppression non effectuer ! Le requerant possede des dossiers !"
 				);
 			} else {
-				toast.error("Echec de la suppression!");
+				toast.error(response.data.message);
 			}
 		});
 	};
@@ -194,6 +213,10 @@ export default function Individu() {
 				{numCompteEdit}
 			</ModalEdition>
 
+			<ModalActivation showActive={showActive} onHide={closeActiveModal}>
+				{numeroCompteActive}
+			</ModalActivation>
+
 			<DeleteConfirmation
 				showModal={displayConfirmationModal}
 				confirmModal={submitDelete}
@@ -223,45 +246,47 @@ export default function Individu() {
 						</div>
 					</form>
 				</HeaderContext>
+
 				<SidebarContext />
 
 				<div className="main-panel">
 					<div className="content">
 						<div className="container-fluid">
+							{/* CONTENU  */}
 							<div className="row">
+								<PersoUtilisateur/>
+								<PersoIndividu />
 								<PersoRequerant />
-
-								{u_info.u_attribut === "Chef" ||
-								u_info.u_attribut === "Chef Adjoint" ||
-								u_info.u_attribut === "Administrateur" ? (
-									<PersoUtilisateur />
-								) : null}
-								
-								<NouveauPersoIndividu />
+								<NouveauPersoUtilisateur />
 							</div>
 
 							<div className="row">
 								<div className="col-md-12">
 									<div className="card">
 										<div className="card-header ">
-											<h4 className="card-title">Liste des {base}s</h4>
+											<h4 className="card-title">
+												Liste des {base}s en attente d'activation
+											</h4>
 										</div>
 										<div className="card-body">
 											<div className="table-responsive text-nowrap">
 												<table className="table table-striped w-auto">
 													<thead>
 														<tr>
-															<th scope="col">Numéro de CIN</th>
-															<th scope="col">Nom </th>
-															<th scope="col">Prénom</th>
-															<th scope="col">Etat Civil</th>
+															<th scope="col">#</th>
+															<th scope="col">Identificant</th>
+															<th scope="col">Individu</th>
+															<th scope="col">Rôle</th>
+															<th scope="col">Unité</th>
+															<th scope="col">Statu</th>
 															<th scope="col" className="text-center">
-																+Details
+																Actions
 															</th>
 															{u_info.u_attribut === "Chef" ||
+															u_info.u_attribut === "Chef Adjoint" ||
 															u_info.u_attribut === "Administrateur" ? (
 																<th scope="col" className="text-center">
-																	Actions
+																	Attention
 																</th>
 															) : null}
 														</tr>
@@ -270,53 +295,84 @@ export default function Individu() {
 														{contenuTab || users.length !== 0 ? (
 															currentItems.map((user, key) => (
 																<tr key={key}>
-																	<th scope="row">{user.cin} </th>
+																	<th scope="row">{user.numeroCompte} </th>
+																	<td>{user.identification}</td>
 																	<td>{user.nom}</td>
-																	<td>{user.prenom}</td>
-																	<td>{user.etatCivil}</td>
+																	<td>{user.attribut}</td>
+																	<td>
+																		{user.unite === 1 ? (
+																			<>Circonscription</>
+																		) : (
+																			<>Conservateur</>
+																		)}
+																	</td>
+																	<td>
+																		{user.statu === 1 ? (
+																			<>Activé</>
+																		) : (
+																			<>Non activé</>
+																		)}
+																	</td>
 																	<td className="text-center">
-																		<Link
-																			to={`/viewIndividu/${user.cin}`}
+																		<button
 																			type="button"
 																			className="btn btn-outline-success btn-sm m-1 waves-effect"
 																			variant="default"
 																			name="numCompteEdit"
+																			// onClick={() =>
+																			//   showEditModal(user.numeroCompte)
+																			// }
 																		>
 																			<BsEye />
-																		</Link>
-																	</td>
-																	<td className="text-center">
+																		</button>
+
 																		<button
 																			type="button"
 																			className="btn btn-outline-primary btn-sm m-1 waves-effect"
 																			variant="default"
 																			name="numCompteEdit"
-																			onClick={() => showEditModal(user.cin)}
+																			// onClick={() =>
+																			//   showEditModal(user.numeroCompte)
+																			// }
 																		>
 																			<BsPencilSquare />
 																		</button>
+																	</td>
 
-																		{u_info.u_attribut === "Chef" ||
-																		u_info.u_attribut === "Chef Adjoint" ||
-																		u_info.u_attribut === "Administrateur" ? (
+																	{u_info.u_attribut === "Chef" ||
+																	u_info.u_attribut === "Chef Adjoint" ||
+																	u_info.u_attribut === "Administrateur" ? (
+																		<td className="text-center">
+																			<button
+																				type="button"
+																				className="btn btn-outline-success btn-sm m-1 waves-effect"
+																				variant="default"
+																				name="numeroCompte"
+																				onClick={() =>
+																					showActiveModal(user.numeroCompte)
+																				}
+																			>
+																				<BsFillPersonCheckFill className="mt-1" />
+																			</button>
+
 																			<button
 																				type="button"
 																				className="btn btn-outline-danger btn-sm m-1 waves-effect"
 																				variant="default"
 																				onClick={() =>
-																					showDeleteModal(user.cin)
+																					showDeleteModal(user.numeroCompte)
 																				}
 																			>
 																				<BsFillTrashFill />
 																			</button>
-																		) : null}
-																	</td>
+																		</td>
+																	) : null}
 																</tr>
 															))
 														) : (
 															<tr>
 																<td
-																	colSpan={7}
+																	colSpan={10}
 																	className="text-danger text-center"
 																>
 																	La liste est vide ....
@@ -359,6 +415,7 @@ export default function Individu() {
 									</div>
 								</div>
 							</div>
+							{/* CONTENU  */}
 						</div>
 					</div>
 

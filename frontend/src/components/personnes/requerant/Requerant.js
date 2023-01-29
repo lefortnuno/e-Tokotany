@@ -94,14 +94,14 @@ export default function Requerant() {
 					"Suppression non effectuer ! Le requerant possede des dossiers !"
 				);
 			} else {
-				toast.error("Echec de l'Ajout!");
+				toast.error("Echec de la suppression!");
 			}
 		});
 	};
 	//#endregion
 
 	//#region   //----- MA RECHERCHE -----
-	const [contenuTab, setContenuTab] = useState(true);
+	const [contenuTab, setContenuTab] = useState(false);
 	function rechercheElement(event) {
 		const valeur = event.target.value;
 		if (!valeur) {
@@ -230,7 +230,13 @@ export default function Requerant() {
 						<div className="container-fluid">
 							<div className="row">
 								<PersoIndividu />
-								<PersoUtilisateur />
+
+								{u_info.u_attribut === "Chef" ||
+								u_info.u_attribut === "Chef Adjoint" ||
+								u_info.u_attribut === "Administrateur" ? (
+									<PersoUtilisateur />
+								) : null}
+
 								<NouveauPersoRequerant />
 							</div>
 
@@ -316,7 +322,7 @@ export default function Requerant() {
 														) : (
 															<tr>
 																<td
-																	colSpan={7}
+																	colSpan={10}
 																	className="text-danger text-center"
 																>
 																	La liste est vide ....
