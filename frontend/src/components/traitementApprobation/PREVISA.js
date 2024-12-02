@@ -146,7 +146,7 @@ export default function PREVISA() {
 
 	return (
 		<>
-			{libraryList.forEach((x) => AjoutLibrary(x))}
+			{/* {libraryList.forEach((x) => AjoutLibrary(x))} */}
 			<div className="wrapper">
 				<ModalPreVISA show={show} onHide={closeAddModal}>
 					{numCompteAjout}

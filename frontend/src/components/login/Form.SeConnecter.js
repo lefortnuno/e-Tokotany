@@ -8,7 +8,7 @@ const URL_DE_BASE = `utilisateur/seConnecter`;
 let isValidate = false;
 
 export default function FormulaireSeConnecter() {
-  ////#region  // --- MES VARIABLES ----
+  //#region  // --- MES VARIABLES ----
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     identification: "",
@@ -20,7 +20,7 @@ export default function FormulaireSeConnecter() {
     messageErreur: "",
     mdp: "Mot de passe obligatoire",
   });
-  ////#endregion
+  //#endregion
 
   //#region // --- HANDLE CHANGE FONCTION ---
   const handleChange = (event) => {
@@ -85,7 +85,7 @@ export default function FormulaireSeConnecter() {
       .post(URL_DE_BASE, inputs)
       .then(function (response) {
         if (response.data.success && response.status === 200) {
-          navigate("/accueil/");
+          navigate("/accueil");
           toast.success(`Connection Reussi`);
 
           const utilisateur = response.data.user[0];
@@ -94,7 +94,6 @@ export default function FormulaireSeConnecter() {
           for (const u in utilisateur) {
             localStorage.setItem(u, utilisateur[u]);
           }
-
         } else {
           setErreurs((values) => ({ ...values, messageErreur: true }));
           setMessages((values) => ({
@@ -124,7 +123,6 @@ export default function FormulaireSeConnecter() {
             <p className="text-danger d-block">{messages.messageErreur}</p>
           ) : null}
         </span>
-
         <div
           className="wrap-input100 validate-input"
           data-validate="Valid email is required: ex@abc.xyz"
@@ -145,7 +143,6 @@ export default function FormulaireSeConnecter() {
             {erreurs.identification ? messages.identification : null}
           </small>
         </div>
-
         <div
           className="wrap-input100 validate-input"
           data-validate="Password is required"
@@ -166,15 +163,14 @@ export default function FormulaireSeConnecter() {
             {erreurs.mdp ? messages.mdp : null}
           </small>
         </div>
-
         <div className="container-login100-form-btn">
           <button className="login100-form-btn" onClick={validation}>
             Se connecter
           </button>
-        </div> <br />
-
+        </div>{" "}
+        <br />
         <div className="text-center p-t-12">
-          <Link to="/accueil/" className="txt2" >
+          <Link to="/accueil" className="txt2">
             Identifiant / Mot de passe
           </Link>
           <span className="txt1"> oublier ?</span>

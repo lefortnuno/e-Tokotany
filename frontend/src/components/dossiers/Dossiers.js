@@ -1,7 +1,7 @@
 import axios from "../../api/axios";
 import getDataUtilisateur from "../../api/udata";
 
-import { libraryList, AjoutLibrary } from "../../api/file.js";
+// import { libraryList, AjoutLibrary } from "../../api/file.js";
 import { AccessCahierND } from "../access/accessCahier";
 import { NouvelleDemande } from "../access/accessAll";
 
@@ -142,7 +142,7 @@ export default function Dossier() {
 
   return (
     <>
-      {libraryList.forEach((x) => AjoutLibrary(x))}
+      {/* {libraryList.forEach((x) => AjoutLibrary(x))} */}
 
       <div className="wrapper">
         <HeaderContext>

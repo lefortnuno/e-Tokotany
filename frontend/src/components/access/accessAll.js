@@ -124,7 +124,7 @@ export function LogoAppE_TK() {
 	return (
 		<>
 			<div className="col-md-3">
-				<Link to="/accueil/">
+				<Link to="/accueil">
 					<div>
 						<img
 							src={process.env.PUBLIC_URL + `/picture/logo/e-T.png`}

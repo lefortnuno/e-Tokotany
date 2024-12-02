@@ -144,7 +144,7 @@ export default function Terrain() {
 
   return (
     <>
-      {libraryList.forEach((x) => AjoutLibrary(x))}
+      {/* {libraryList.forEach((x) => AjoutLibrary(x))} */}
 
       <div className="wrapper">
         <HeaderContext>

@@ -54,7 +54,7 @@ export default function StatisiqueGenerale() {
 
 	return (
 		<>
-			{libraryList.forEach((x) => AjoutLibrary(x))}
+			{/* {libraryList.forEach((x) => AjoutLibrary(x))} */}
 
 			<div className="wrapper">
 				<HeaderContext>

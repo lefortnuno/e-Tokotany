@@ -83,7 +83,7 @@ export default function DetailsTerrain() {
 
 	return (
 		<>
-			{libraryList.forEach((x) => AjoutLibrary(x))}
+			{/* {libraryList.forEach((x) => AjoutLibrary(x))} */}
 
 			<div className="wrapper">
 				<HeaderContext>

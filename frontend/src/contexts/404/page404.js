@@ -5,7 +5,7 @@ export default function PageNotFound() {
   const navigate = useNavigate();
 
   const goHome = () => {
-    navigate("/accueil/");
+    navigate("/accueil");
   };
 
   return (

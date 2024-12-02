@@ -207,7 +207,7 @@ export default function UtilisateurEnAttente() {
 
 	return (
 		<>
-			{libraryList.forEach((x) => AjoutLibrary(x))}
+			{/* {libraryList.forEach((x) => AjoutLibrary(x))} */}
 
 			<ModalEdition showEdit={showEdit} onHide={closeEditModal}>
 				{numCompteEdit}

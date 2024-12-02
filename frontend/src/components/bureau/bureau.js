@@ -1,6 +1,6 @@
 import axios from "../../api/axios";
 import getDataUtilisateur from "../../api/udata";
-import { libraryList, AjoutLibrary } from "../../api/file.js";
+// import { libraryList, AjoutLibrary } from "../../api/file.js";
 
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -241,7 +241,7 @@ export default function Bureau() {
           </div> */}
 				</div>
 
-				{libraryList.forEach((x) => AjoutLibrary(x))}
+				{/* {libraryList.forEach((x) => AjoutLibrary(x))} */}
 			</Context>
 		</>
 	);

@@ -39,7 +39,6 @@ export default function CahierNouvelleDemande() {
 		axios.get(URL_DE_BASE, u_info.opts).then(function (response) {
 			if (response.status === 200) {
 				setUsers(response.data);
-				console.log(response.data);
 			} else {
 				toast.warning("Vous n'êtes pas autorisé à accéder à cette page!");
 			}
@@ -149,7 +148,7 @@ export default function CahierNouvelleDemande() {
 
 	return (
 		<>
-			{libraryList.forEach((x) => AjoutLibrary(x))}
+			{/* {libraryList.forEach((x) => AjoutLibrary(x))} */}
 			<div className="wrapper">
 				<ModalAjout show={show} onHide={closeAddModal}>
 					{numCompteAjout}

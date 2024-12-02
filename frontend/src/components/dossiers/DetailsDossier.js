@@ -1,7 +1,7 @@
 import axios from "../../api/axios";
 import getDataUtilisateur from "../../api/udata";
 
-import { libraryList, AjoutLibrary } from "../../api/file.js";
+// import { libraryList, AjoutLibrary } from "../../api/file.js";
 
 import HeaderContext from "../../contexts/header/header.context";
 import FooterContext from "../../contexts/footer/footer.context";
@@ -248,7 +248,7 @@ export default function DetailsDossier() {
 
 	return (
 		<>
-			{libraryList.forEach((x) => AjoutLibrary(x))}
+			{/* {libraryList.forEach((x) => AjoutLibrary(x))} */}
 
 			<div className="wrapper">
 				<ModalAjout show={show} onHide={closeAddModal}>

@@ -56,7 +56,7 @@ export default function DetailsIndividu() {
 
 	return (
 		<>
-			{libraryList.forEach((x) => AjoutLibrary(x))}
+			{/* {libraryList.forEach((x) => AjoutLibrary(x))} */}
 			<div className="wrapper">
 				<HeaderContext>
 					<form className="navbar-left navbar-form nav-search mr-md-3">

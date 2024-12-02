@@ -140,7 +140,7 @@ export default function Procedure() {
 
 	return (
 		<>
-			{libraryList.forEach((x) => AjoutLibrary(x))}
+			{/* {libraryList.forEach((x) => AjoutLibrary(x))} */}
 			<Context>
 				<div className="row">
 					<DrapeauFanjakana />

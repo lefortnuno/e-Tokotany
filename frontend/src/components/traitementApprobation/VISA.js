@@ -144,7 +144,7 @@ export default function VISA() {
 
 	return (
 		<>
-			{libraryList.forEach((x) => AjoutLibrary(x))}
+			{/* {libraryList.forEach((x) => AjoutLibrary(x))} */}
 			<div className="wrapper">
 				<ModalVISA show={show} onHide={closeAddModal}>
 					{numCompteAjout}

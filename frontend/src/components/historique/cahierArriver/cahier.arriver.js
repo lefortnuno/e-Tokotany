@@ -1,6 +1,6 @@
 import axios from "../../../api/axios";
 import getDataUtilisateur from "../../../api/udata";
-import { AjoutLibrary, libraryList } from "../../../api/file.js";
+// import { AjoutLibrary, libraryList } from "../../../api/file.js";
 
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -47,7 +47,6 @@ export default function CahierArriver() {
 		axios.get(URL_DE_BASE, u_info.opts).then(function (response) {
 			if (response.status === 200) {
 				setUsers(response.data);
-				console.log(response.data);
 			} else {
 				toast.warning("Vous n'êtes pas autorisé à accéder à cette page!");
 			}
@@ -157,7 +156,7 @@ export default function CahierArriver() {
 
 	return (
 		<>
-			{libraryList.forEach((x) => AjoutLibrary(x))}
+			{/* {libraryList.forEach((x) => AjoutLibrary(x))} */}
 			<div className="wrapper">
 				<ModalAjout show={show} onHide={closeAddModal}>
 					{numCompteAjout}
@@ -211,7 +210,7 @@ export default function CahierArriver() {
 															<th scope="col">Requérant</th>
 															<th scope="col">Procédure</th>
 															<th scope="col">Déposant</th>
-															<th scope="col">Date_d'arriver</th> 
+															<th scope="col">Date_d'arriver</th>
 															<th scope="col">Observation</th>
 															<th scope="col">Agent</th>
 															<th scope="col"> </th>
@@ -228,9 +227,9 @@ export default function CahierArriver() {
 																		{user.nom} {user.prenom}
 																	</td>
 																	<td>{user.nomProcedure}</td>
-																	<td>{user.nomBureau}</td> 
-																	<td>{user.dateDepotSD}</td> 
-																	<td>{user.observationSD}</td>
+																	<td>{user.nomBureau}</td>
+																	<td>{user.dateDebutMouvement}</td>
+																	<td>{user.observation}</td>
 																	<td>{user.identification}</td>
 																	<td>
 																		{user.accomplissement ||

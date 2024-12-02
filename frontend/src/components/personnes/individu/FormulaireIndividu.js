@@ -389,7 +389,7 @@ export default function FormulaireNouveauIndividu() {
 			setErreurs((values) => ({ ...values, [element]: false }));
 		});
 
-		navigate("/individu/");
+		navigate("/individu");
 	}
 	//#endregion
 

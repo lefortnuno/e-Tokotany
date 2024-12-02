@@ -19,7 +19,7 @@ export default function Context(CONTENU) {
           <FooterContext />
         </div>
       </div>
-        {libraryList.forEach((x) => AjoutLibrary(x))}
+        {/* {libraryList.forEach((x) => AjoutLibrary(x))} */}
     </>
   );
 }

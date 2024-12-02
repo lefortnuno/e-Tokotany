@@ -399,7 +399,7 @@ export default function FormulaireNouvelleDemande() {
 
 		resetDonnee();
 
-		navigate("/dossier/");
+		navigate("/dossier");
 	}
 	//#endregion
 

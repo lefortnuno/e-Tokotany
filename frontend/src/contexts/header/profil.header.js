@@ -53,7 +53,7 @@ export default function ProfilHeader() {
 						</div>
 					</li>
 					<div className="dropdown-divider"></div>
-					<Link to="/utilisateur/" className="dropdown-item">
+					<Link to="/utilisateur" className="dropdown-item">
 						<i>
 							<BsGearFill />
 						</i>{" "}

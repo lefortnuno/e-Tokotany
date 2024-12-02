@@ -246,7 +246,7 @@ export default function FormulaireNouveauRequerant() {
 			setErreurs((values) => ({ ...values, [element]: false }));
 		});
 
-		navigate("/requerant/");
+		navigate("/requerant");
 	}
 	//#endregion
 
