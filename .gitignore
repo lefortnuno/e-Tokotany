@@ -1,8 +1,8 @@
-# backEnd/config/.env
+backEnd/config/.env
 backEnd/node_modules
 
-# frontEnd/.env
+frontEnd/.env
 frontEnd/node_modules
-# frontEnd/public/picture/pdp
+frontEnd/public/picture/pdp
 
 process/*
