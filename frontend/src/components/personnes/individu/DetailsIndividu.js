@@ -182,8 +182,8 @@ export default function DetailsIndividu() {
 													<div className="colmun colmun-left">
 														<img
 															src={
-																process.env.PUBLIC_URL +
-																`/picture/pageNotFound/404 2.png`
+																process.env.REACT_APP_SUN_COMPLET_URL +
+																`/uploads/404-2.png`
 															}
 															alt="image-left"
 														/>

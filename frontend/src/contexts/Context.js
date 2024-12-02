@@ -50,7 +50,7 @@ export default function Context({ children }) {
       />
       <SidebarContext isSidebarOpen={isSidebarOpen} />
       <div className="main-panel">
-        <div className="content"> 
+        <div className="content">
           <div className="container-fluid">{children}</div>
         </div>
         <FooterContext />
