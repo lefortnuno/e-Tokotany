@@ -6,17 +6,13 @@ export default function ProfilSidebar() {
     <>
       <div className="user">
         <div className="photo">
-          {/* <img
+          <img
             src={
               process.env.REACT_APP_SUN_COMPLET_URL +
               `uploads/${u_info.u_photoPDP}`
             }
             alt="pdp"
-          /> */}
-          <img
-            src={`https://etokotanys.onrender.com/api/uploads/1672771262506-logo.jpg`}
-            alt="pdp2"
-          /> 
+          />
         </div>
         <div className="info">
           <a href="#" aria-expanded="true">

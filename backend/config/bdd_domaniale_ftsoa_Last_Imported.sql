@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 02 déc. 2024 à 01:51
--- Version du serveur :  5.7.19
--- Version de PHP :  5.6.31
+-- Host: mysql-trofel.alwaysdata.net
+-- Generation Time: Dec 02, 2024 at 07:59 AM
+-- Server version: 10.11.8-MariaDB
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,25 +18,23 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `bdd_domaniale_ftsoa`
+-- Database: `trofel_etokotany`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `bureau`
+-- Table structure for table `bureau`
 --
 
-DROP TABLE IF EXISTS `bureau`;
-CREATE TABLE IF NOT EXISTS `bureau` (
-  `idBureau` int(3) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `bureau` (
+  `idBureau` int(3) NOT NULL,
   `nomBureau` varchar(25) NOT NULL,
-  `adressBureau` varchar(150) NOT NULL,
-  PRIMARY KEY (`idBureau`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `adressBureau` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `bureau`
+-- Dumping data for table `bureau`
 --
 
 INSERT INTO `bureau` (`idBureau`, `nomBureau`, `adressBureau`) VALUES
@@ -50,48 +47,45 @@ INSERT INTO `bureau` (`idBureau`, `nomBureau`, `adressBureau`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `compte`
+-- Table structure for table `compte`
 --
 
-DROP TABLE IF EXISTS `compte`;
-CREATE TABLE IF NOT EXISTS `compte` (
-  `numeroCompte` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `compte` (
+  `numeroCompte` int(11) NOT NULL,
   `identification` varchar(50) NOT NULL,
   `photoPDP` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `attribut` varchar(15) DEFAULT 'Agent',
   `mdp` varchar(100) NOT NULL,
   `unite` tinyint(1) NOT NULL,
-  `statu` tinyint(1) DEFAULT '0',
-  `u_cin` varchar(12) DEFAULT NULL,
-  PRIMARY KEY (`numeroCompte`),
-  KEY `u_cin` (`u_cin`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+  `statu` tinyint(1) DEFAULT 0,
+  `u_cin` varchar(12) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `compte`
+-- Dumping data for table `compte`
 --
 
 INSERT INTO `compte` (`numeroCompte`, `identification`, `photoPDP`, `attribut`, `mdp`, `unite`, `statu`, `u_cin`) VALUES
 (1, 'LEFORT', '1672771262506-logo.jpg', 'Administrateur', '$2b$10$4WBMGWWIiMbljSTSa99Tfur3Wbg9psmXswKck4x30f/30u7kv.pmy', 1, 1, '201011028460'),
-(4, 'Kanto', '1671269107521-logoENI.png', 'Chef', '$2b$10$HR/qGl6WQIfThhNEI8vhpuFSdkkb2LsX4a19wYbmoQq61v05ek0OG', 1, 1, '201012013089'),
-(5, 'Nuno', '1671269107521-logoENI.png', 'Chef Adjoint', '$2b$10$aNURlBzDZh0Z.hLK.rTYkOoS590v6c/7sZ7ppKSem/.inVvUmgiRa', 1, 1, '201011028460'),
-(6, 'aaaa-6', '1671269107521-logoENI.png', 'Usager', '$2b$10$Jen.aioYLjT.46nc6hF6uetrMV8X.VZcn7hgWw0e6ymjoMd3b9l1y', 1, 0, '501012035987'),
+(4, 'Kanto', '2672771262506-logo.jpg', 'Chef', '$2b$10$oLVL7qFcErnaWeSkP6rRo..RJAsqJ8rbDVmDw4WSQpIMRFHhC2ktS', 1, 1, '201012013089'),
+(5, 'Nuno', '1672771262506-logo3.jpg', 'Chef Adjoint', '$2b$10$oLVL7qFcErnaWeSkP6rRo..RJAsqJ8rbDVmDw4WSQpIMRFHhC2ktS', 1, 1, '201011028460'),
+(6, 'aeeni', '1671269107521-logoENI.png', 'Usager', '$2b$10$oLVL7qFcErnaWeSkP6rRo..RJAsqJ8rbDVmDw4WSQpIMRFHhC2ktS', 1, 0, '501012035987'),
 (7, 'bbbb-7', '1671269107521-logoENI.png', 'utilisateur', '$2b$10$HR/qGl6WQIfThhNEI8vhpuFSdkkb2LsX4a19wYbmoQq61v05ek0OG', 1, 0, '901022036548'),
 (8, 'Nadia-8', '1671269107521-logoENI.png', 'Usager', '$2b$10$0aTVZvQPPe8qrERcNHb7gO/5d4j/yVdvJfrE5xKuPB6sJcavgbTdG', 1, 1, '901022036548'),
-(9, 'jimm', '2672771262506-logo.jpg', 'Agent', '$2b$10$VwsE8c.lVaG9su7RkbD71uXKURPgs3cMF6Ge1U5jRlnaOCQLbRB4O', 1, 1, '333331333333'),
-(10, 'Koto-10', '1671269107521-logoENI.png', 'Usager', '$2b$10$q2fKscy4TyECss3kaJzLE.C/X/QZRu34ym4Qv0KIIBESMw/ykj8T6', 0, 0, '201011460028'),
-(11, 'BARRY', '3671269107521-killua.jpg', 'Usager', '$2b$10$LnWTi5DR9J9meIOoYpKU4ekio4jOOy2IvK9YKLxhhCmBC8CKKQB.m', 1, 1, '901011028444'),
-(12, 'AEENI', '1712970042917-logo AEENI.png', 'Usager', '$2b$10$js44jrFs7tnvd7HHkpakH.3hlj8aGMVqL7e0K0J/b4Heg2pOuX7i2', 1, 1, '501011028555');
+(9, 'jimm', '2672771262506-logo2.jpg', 'Agent', '$2b$10$oLVL7qFcErnaWeSkP6rRo..RJAsqJ8rbDVmDw4WSQpIMRFHhC2ktS', 1, 1, '333331333333'),
+(10, 'Koto-10', '1671269107521-logoENI.png', 'Usager', '$2b$10$oLVL7qFcErnaWeSkP6rRo..RJAsqJ8rbDVmDw4WSQpIMRFHhC2ktS', 0, 0, '201011460028'),
+(11, 'BARRY', '3671269107521-killua.jpg', 'Usager', '$2b$10$oLVL7qFcErnaWeSkP6rRo..RJAsqJ8rbDVmDw4WSQpIMRFHhC2ktS', 1, 1, '901011028444'),
+(12, 'AEENI', '1712970042917-logo AEENI.png', 'Usager', '$2b$10$oLVL7qFcErnaWeSkP6rRo..RJAsqJ8rbDVmDw4WSQpIMRFHhC2ktS', 1, 1, '501011028555'),
+(13, 'CODE0-13', '1733119869468-QRCode.png', 'Usager', '$2b$10$oLVL7qFcErnaWeSkP6rRo..RJAsqJ8rbDVmDw4WSQpIMRFHhC2ktS', 1, 1, '201011460028');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `dossier`
+-- Table structure for table `dossier`
 --
 
-DROP TABLE IF EXISTS `dossier`;
-CREATE TABLE IF NOT EXISTS `dossier` (
-  `numeroDossier` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `dossier` (
+  `numeroDossier` int(255) NOT NULL,
   `numeroAffaire` varchar(15) NOT NULL,
   `dependance` tinyint(1) DEFAULT NULL,
   `natureAffectation` tinyint(1) DEFAULT NULL,
@@ -106,14 +100,11 @@ CREATE TABLE IF NOT EXISTS `dossier` (
   `labordeLong` varchar(12) DEFAULT NULL,
   `observationDossier` varchar(255) DEFAULT NULL,
   `p_numeroRequerant` int(11) NOT NULL,
-  `p_numeroProcedure` int(2) NOT NULL,
-  PRIMARY KEY (`numeroDossier`,`numeroAffaire`),
-  KEY `p_numeroRequerant` (`p_numeroRequerant`),
-  KEY `p_numeroProcedure` (`p_numeroProcedure`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+  `p_numeroProcedure` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `dossier`
+-- Dumping data for table `dossier`
 --
 
 INSERT INTO `dossier` (`numeroDossier`, `numeroAffaire`, `dependance`, `natureAffectation`, `empietement`, `lettreDemande`, `planAnnexe`, `pvDelimitation`, `superficieTerrain`, `dateDemande`, `droitDemande`, `labordeLat`, `labordeLong`, `observationDossier`, `p_numeroRequerant`, `p_numeroProcedure`) VALUES
@@ -139,12 +130,11 @@ INSERT INTO `dossier` (`numeroDossier`, `numeroAffaire`, `dependance`, `natureAf
 -- --------------------------------------------------------
 
 --
--- Structure de la table `dossier_temporaire`
+-- Table structure for table `dossier_temporaire`
 --
 
-DROP TABLE IF EXISTS `dossier_temporaire`;
-CREATE TABLE IF NOT EXISTS `dossier_temporaire` (
-  `idTmpDossier` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `dossier_temporaire` (
+  `idTmpDossier` int(255) NOT NULL,
   `numeroAffaire` varchar(15) DEFAULT NULL,
   `dependance` tinyint(1) DEFAULT NULL,
   `natureAffectation` tinyint(1) DEFAULT NULL,
@@ -161,13 +151,11 @@ CREATE TABLE IF NOT EXISTS `dossier_temporaire` (
   `tmp_numeroRequerant` int(11) DEFAULT NULL,
   `lettreDesistement` tinyint(1) DEFAULT NULL,
   `planMere` tinyint(1) DEFAULT NULL,
-  `certificatSituationJuridique` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`idTmpDossier`),
-  KEY `tmp_numeroRequerant` (`tmp_numeroRequerant`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `certificatSituationJuridique` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `dossier_temporaire`
+-- Dumping data for table `dossier_temporaire`
 --
 
 INSERT INTO `dossier_temporaire` (`idTmpDossier`, `numeroAffaire`, `dependance`, `natureAffectation`, `empietement`, `lettreDemande`, `planAnnexe`, `pvDelimitation`, `superficieTerrain`, `labordeLat`, `labordeLong`, `dateDemande`, `droitDemande`, `observationDossier`, `tmp_numeroRequerant`, `lettreDesistement`, `planMere`, `certificatSituationJuridique`) VALUES
@@ -176,23 +164,21 @@ INSERT INTO `dossier_temporaire` (`idTmpDossier`, `numeroAffaire`, `dependance`,
 -- --------------------------------------------------------
 
 --
--- Structure de la table `etat_civil`
+-- Table structure for table `etat_civil`
 --
 
-DROP TABLE IF EXISTS `etat_civil`;
-CREATE TABLE IF NOT EXISTS `etat_civil` (
-  `codeEtatCivil` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `etat_civil` (
+  `codeEtatCivil` int(11) NOT NULL,
   `etatCivil` varchar(15) NOT NULL,
   `cinConjoint` varchar(12) DEFAULT NULL,
   `nomConjoint` varchar(50) DEFAULT NULL,
   `prenomConjoint` varchar(150) DEFAULT NULL,
   `dateEtatCivil` date DEFAULT NULL,
-  `lieuEtatCivil` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`codeEtatCivil`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+  `lieuEtatCivil` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `etat_civil`
+-- Dumping data for table `etat_civil`
 --
 
 INSERT INTO `etat_civil` (`codeEtatCivil`, `etatCivil`, `cinConjoint`, `nomConjoint`, `prenomConjoint`, `dateEtatCivil`, `lieuEtatCivil`) VALUES
@@ -213,12 +199,11 @@ INSERT INTO `etat_civil` (`codeEtatCivil`, `etatCivil`, `cinConjoint`, `nomConjo
 -- --------------------------------------------------------
 
 --
--- Structure de la table `historique`
+-- Table structure for table `historique`
 --
 
-DROP TABLE IF EXISTS `historique`;
-CREATE TABLE IF NOT EXISTS `historique` (
-  `numeroHisto` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `historique` (
+  `numeroHisto` int(255) NOT NULL,
   `mouvement` varchar(25) NOT NULL,
   `dateDebutMouvement` date DEFAULT NULL,
   `dateFinMouvement` date DEFAULT NULL,
@@ -230,15 +215,11 @@ CREATE TABLE IF NOT EXISTS `historique` (
   `h_numeroDossier` int(255) NOT NULL,
   `h_numeroAffaire` varchar(15) NOT NULL,
   `h_numeroProcedure` int(2) NOT NULL,
-  `p_numeroCompte` int(11) NOT NULL,
-  PRIMARY KEY (`numeroHisto`),
-  KEY `p_numeroCompte` (`p_numeroCompte`),
-  KEY `h_numeroDossier` (`h_numeroDossier`,`h_numeroAffaire`),
-  KEY `h_numeroProcedure` (`h_numeroProcedure`)
-) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=latin1;
+  `p_numeroCompte` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `historique`
+-- Dumping data for table `historique`
 --
 
 INSERT INTO `historique` (`numeroHisto`, `mouvement`, `dateDebutMouvement`, `dateFinMouvement`, `dateRDV`, `dispoDossier`, `approbation`, `accomplissement`, `observation`, `h_numeroDossier`, `h_numeroAffaire`, `h_numeroProcedure`, `p_numeroCompte`) VALUES
@@ -362,11 +343,10 @@ INSERT INTO `historique` (`numeroHisto`, `mouvement`, `dateDebutMouvement`, `dat
 -- --------------------------------------------------------
 
 --
--- Structure de la table `individu`
+-- Table structure for table `individu`
 --
 
-DROP TABLE IF EXISTS `individu`;
-CREATE TABLE IF NOT EXISTS `individu` (
+CREATE TABLE `individu` (
   `cin` varchar(12) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(150) NOT NULL,
@@ -376,13 +356,11 @@ CREATE TABLE IF NOT EXISTS `individu` (
   `domicile` varchar(50) NOT NULL,
   `dateLivrance` date DEFAULT NULL,
   `lieuLivrance` varchar(50) NOT NULL,
-  `p_codeEtatCivil` int(11) NOT NULL,
-  PRIMARY KEY (`cin`),
-  KEY `p_codeEtatCivil` (`p_codeEtatCivil`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `p_codeEtatCivil` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `individu`
+-- Dumping data for table `individu`
 --
 
 INSERT INTO `individu` (`cin`, `nom`, `prenom`, `lieuNaiss`, `dateNaiss`, `profession`, `domicile`, `dateLivrance`, `lieuLivrance`, `p_codeEtatCivil`) VALUES
@@ -403,17 +381,15 @@ INSERT INTO `individu` (`cin`, `nom`, `prenom`, `lieuNaiss`, `dateNaiss`, `profe
 -- --------------------------------------------------------
 
 --
--- Structure de la table `numero_affaire_ax`
+-- Table structure for table `numero_affaire_ax`
 --
 
-DROP TABLE IF EXISTS `numero_affaire_ax`;
-CREATE TABLE IF NOT EXISTS `numero_affaire_ax` (
-  `autoNumber` int(255) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`autoNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+CREATE TABLE `numero_affaire_ax` (
+  `autoNumber` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `numero_affaire_ax`
+-- Dumping data for table `numero_affaire_ax`
 --
 
 INSERT INTO `numero_affaire_ax` (`autoNumber`) VALUES
@@ -424,17 +400,15 @@ INSERT INTO `numero_affaire_ax` (`autoNumber`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `numero_affaire_v`
+-- Table structure for table `numero_affaire_v`
 --
 
-DROP TABLE IF EXISTS `numero_affaire_v`;
-CREATE TABLE IF NOT EXISTS `numero_affaire_v` (
-  `autoNumber` int(255) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`autoNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+CREATE TABLE `numero_affaire_v` (
+  `autoNumber` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `numero_affaire_v`
+-- Dumping data for table `numero_affaire_v`
 --
 
 INSERT INTO `numero_affaire_v` (`autoNumber`) VALUES
@@ -457,17 +431,15 @@ INSERT INTO `numero_affaire_v` (`autoNumber`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `numero_affaire_x`
+-- Table structure for table `numero_affaire_x`
 --
 
-DROP TABLE IF EXISTS `numero_affaire_x`;
-CREATE TABLE IF NOT EXISTS `numero_affaire_x` (
-  `autoNumber` int(255) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`autoNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+CREATE TABLE `numero_affaire_x` (
+  `autoNumber` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `numero_affaire_x`
+-- Dumping data for table `numero_affaire_x`
 --
 
 INSERT INTO `numero_affaire_x` (`autoNumber`) VALUES
@@ -479,17 +451,15 @@ INSERT INTO `numero_affaire_x` (`autoNumber`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `numero_im_ax`
+-- Table structure for table `numero_im_ax`
 --
 
-DROP TABLE IF EXISTS `numero_im_ax`;
-CREATE TABLE IF NOT EXISTS `numero_im_ax` (
-  `autoNumber` int(255) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`autoNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+CREATE TABLE `numero_im_ax` (
+  `autoNumber` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `numero_im_ax`
+-- Dumping data for table `numero_im_ax`
 --
 
 INSERT INTO `numero_im_ax` (`autoNumber`) VALUES
@@ -499,17 +469,15 @@ INSERT INTO `numero_im_ax` (`autoNumber`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `numero_im_v`
+-- Table structure for table `numero_im_v`
 --
 
-DROP TABLE IF EXISTS `numero_im_v`;
-CREATE TABLE IF NOT EXISTS `numero_im_v` (
-  `autoNumber` int(255) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`autoNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+CREATE TABLE `numero_im_v` (
+  `autoNumber` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `numero_im_v`
+-- Dumping data for table `numero_im_v`
 --
 
 INSERT INTO `numero_im_v` (`autoNumber`) VALUES
@@ -524,17 +492,15 @@ INSERT INTO `numero_im_v` (`autoNumber`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `numero_im_x`
+-- Table structure for table `numero_im_x`
 --
 
-DROP TABLE IF EXISTS `numero_im_x`;
-CREATE TABLE IF NOT EXISTS `numero_im_x` (
-  `autoNumber` int(255) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`autoNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+CREATE TABLE `numero_im_x` (
+  `autoNumber` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `numero_im_x`
+-- Dumping data for table `numero_im_x`
 --
 
 INSERT INTO `numero_im_x` (`autoNumber`) VALUES
@@ -545,22 +511,19 @@ INSERT INTO `numero_im_x` (`autoNumber`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `procedures`
+-- Table structure for table `procedures`
 --
 
-DROP TABLE IF EXISTS `procedures`;
-CREATE TABLE IF NOT EXISTS `procedures` (
-  `numeroProcedure` int(3) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `procedures` (
+  `numeroProcedure` int(3) NOT NULL,
   `nomProcedure` varchar(50) NOT NULL,
   `natureProcedure` varchar(100) NOT NULL,
   `movProcedure` varchar(20) NOT NULL,
-  `p_idBureau` int(3) NOT NULL,
-  PRIMARY KEY (`numeroProcedure`),
-  KEY `p_idBureau` (`p_idBureau`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1;
+  `p_idBureau` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `procedures`
+-- Dumping data for table `procedures`
 --
 
 INSERT INTO `procedures` (`numeroProcedure`, `nomProcedure`, `natureProcedure`, `movProcedure`, `p_idBureau`) VALUES
@@ -580,22 +543,19 @@ INSERT INTO `procedures` (`numeroProcedure`, `nomProcedure`, `natureProcedure`, 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `requerant`
+-- Table structure for table `requerant`
 --
 
-DROP TABLE IF EXISTS `requerant`;
-CREATE TABLE IF NOT EXISTS `requerant` (
-  `numeroRequerant` int(11) NOT NULL AUTO_INCREMENT,
-  `etatMorale` tinyint(1) DEFAULT '0',
+CREATE TABLE `requerant` (
+  `numeroRequerant` int(11) NOT NULL,
+  `etatMorale` tinyint(1) DEFAULT 0,
   `numeroTelephone` varchar(12) DEFAULT NULL,
   `complementInformation` varchar(255) DEFAULT NULL,
-  `p_cin` varchar(12) NOT NULL,
-  PRIMARY KEY (`numeroRequerant`),
-  KEY `p_cin` (`p_cin`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=latin1;
+  `p_cin` varchar(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `requerant`
+-- Dumping data for table `requerant`
 --
 
 INSERT INTO `requerant` (`numeroRequerant`, `etatMorale`, `numeroTelephone`, `complementInformation`, `p_cin`) VALUES
@@ -619,12 +579,11 @@ INSERT INTO `requerant` (`numeroRequerant`, `etatMorale`, `numeroTelephone`, `co
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sous_dossier`
+-- Table structure for table `sous_dossier`
 --
 
-DROP TABLE IF EXISTS `sous_dossier`;
-CREATE TABLE IF NOT EXISTS `sous_dossier` (
-  `numeroSousDossier` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sous_dossier` (
+  `numeroSousDossier` int(255) NOT NULL,
   `observationSD` varchar(250) DEFAULT NULL,
   `dateDepotSD` date DEFAULT NULL,
   `mesureAttribuable` varchar(50) DEFAULT NULL,
@@ -635,13 +594,11 @@ CREATE TABLE IF NOT EXISTS `sous_dossier` (
   `VISA` tinyint(1) DEFAULT NULL,
   `preVISA` tinyint(1) DEFAULT NULL,
   `p_numeroDossier` int(255) NOT NULL,
-  `p_numeroAffaire` varchar(15) NOT NULL,
-  PRIMARY KEY (`numeroSousDossier`),
-  KEY `p_numeroDossier` (`p_numeroDossier`,`p_numeroAffaire`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+  `p_numeroAffaire` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `sous_dossier`
+-- Dumping data for table `sous_dossier`
 --
 
 INSERT INTO `sous_dossier` (`numeroSousDossier`, `observationSD`, `dateDepotSD`, `mesureAttribuable`, `prixAttribue`, `lettreDesistement`, `planMere`, `certificatSituationJuridique`, `VISA`, `preVISA`, `p_numeroDossier`, `p_numeroAffaire`) VALUES
@@ -688,12 +645,11 @@ INSERT INTO `sous_dossier` (`numeroSousDossier`, `observationSD`, `dateDepotSD`,
 -- --------------------------------------------------------
 
 --
--- Structure de la table `terrain`
+-- Table structure for table `terrain`
 --
 
-DROP TABLE IF EXISTS `terrain`;
-CREATE TABLE IF NOT EXISTS `terrain` (
-  `numeroTitre` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `terrain` (
+  `numeroTitre` int(255) NOT NULL,
   `immatriculationTerrain` varchar(20) NOT NULL,
   `nomPropriete` varchar(150) NOT NULL,
   `etatCiviqueTerrain` varchar(15) DEFAULT 'MALGACHE',
@@ -702,13 +658,11 @@ CREATE TABLE IF NOT EXISTS `terrain` (
   `t_labordeLong` varchar(15) DEFAULT NULL,
   `t_cin` varchar(12) DEFAULT NULL,
   `t_numeroDossier` int(100) DEFAULT NULL,
-  `t_numeroAffaire` varchar(12) DEFAULT NULL,
-  PRIMARY KEY (`numeroTitre`,`immatriculationTerrain`),
-  KEY `t_cin` (`t_cin`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+  `t_numeroAffaire` varchar(12) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Déchargement des données de la table `terrain`
+-- Dumping data for table `terrain`
 --
 
 INSERT INTO `terrain` (`numeroTitre`, `immatriculationTerrain`, `nomPropriete`, `etatCiviqueTerrain`, `prixTerrain`, `t_labordeLat`, `t_labordeLong`, `t_cin`, `t_numeroDossier`, `t_numeroAffaire`) VALUES
@@ -725,71 +679,299 @@ INSERT INTO `terrain` (`numeroTitre`, `immatriculationTerrain`, `nomPropriete`, 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tmpcompte`
+-- Table structure for table `tmpcompte`
 --
 
-DROP TABLE IF EXISTS `tmpcompte`;
-CREATE TABLE IF NOT EXISTS `tmpcompte` (
-  `numeroCompte` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tmpcompte` (
+  `numeroCompte` int(11) NOT NULL,
   `identification` varchar(50) NOT NULL,
   `photoPDP` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `attribut` varchar(15) DEFAULT 'Utilisateur',
   `mdp` varchar(100) NOT NULL,
   `unite` tinyint(1) NOT NULL,
-  `statu` tinyint(1) DEFAULT '0',
-  `u_cin` varchar(12) DEFAULT NULL,
-  PRIMARY KEY (`numeroCompte`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `statu` tinyint(1) DEFAULT 0,
+  `u_cin` varchar(12) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Contraintes pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Contraintes pour la table `compte`
+-- Indexes for table `bureau`
+--
+ALTER TABLE `bureau`
+  ADD PRIMARY KEY (`idBureau`);
+
+--
+-- Indexes for table `compte`
+--
+ALTER TABLE `compte`
+  ADD PRIMARY KEY (`numeroCompte`),
+  ADD KEY `u_cin` (`u_cin`);
+
+--
+-- Indexes for table `dossier`
+--
+ALTER TABLE `dossier`
+  ADD PRIMARY KEY (`numeroDossier`,`numeroAffaire`),
+  ADD KEY `p_numeroRequerant` (`p_numeroRequerant`),
+  ADD KEY `p_numeroProcedure` (`p_numeroProcedure`);
+
+--
+-- Indexes for table `dossier_temporaire`
+--
+ALTER TABLE `dossier_temporaire`
+  ADD PRIMARY KEY (`idTmpDossier`),
+  ADD KEY `tmp_numeroRequerant` (`tmp_numeroRequerant`);
+
+--
+-- Indexes for table `etat_civil`
+--
+ALTER TABLE `etat_civil`
+  ADD PRIMARY KEY (`codeEtatCivil`);
+
+--
+-- Indexes for table `historique`
+--
+ALTER TABLE `historique`
+  ADD PRIMARY KEY (`numeroHisto`),
+  ADD KEY `p_numeroCompte` (`p_numeroCompte`),
+  ADD KEY `h_numeroDossier` (`h_numeroDossier`,`h_numeroAffaire`),
+  ADD KEY `h_numeroProcedure` (`h_numeroProcedure`);
+
+--
+-- Indexes for table `individu`
+--
+ALTER TABLE `individu`
+  ADD PRIMARY KEY (`cin`),
+  ADD KEY `p_codeEtatCivil` (`p_codeEtatCivil`);
+
+--
+-- Indexes for table `numero_affaire_ax`
+--
+ALTER TABLE `numero_affaire_ax`
+  ADD PRIMARY KEY (`autoNumber`);
+
+--
+-- Indexes for table `numero_affaire_v`
+--
+ALTER TABLE `numero_affaire_v`
+  ADD PRIMARY KEY (`autoNumber`);
+
+--
+-- Indexes for table `numero_affaire_x`
+--
+ALTER TABLE `numero_affaire_x`
+  ADD PRIMARY KEY (`autoNumber`);
+
+--
+-- Indexes for table `numero_im_ax`
+--
+ALTER TABLE `numero_im_ax`
+  ADD PRIMARY KEY (`autoNumber`);
+
+--
+-- Indexes for table `numero_im_v`
+--
+ALTER TABLE `numero_im_v`
+  ADD PRIMARY KEY (`autoNumber`);
+
+--
+-- Indexes for table `numero_im_x`
+--
+ALTER TABLE `numero_im_x`
+  ADD PRIMARY KEY (`autoNumber`);
+
+--
+-- Indexes for table `procedures`
+--
+ALTER TABLE `procedures`
+  ADD PRIMARY KEY (`numeroProcedure`),
+  ADD KEY `p_idBureau` (`p_idBureau`);
+
+--
+-- Indexes for table `requerant`
+--
+ALTER TABLE `requerant`
+  ADD PRIMARY KEY (`numeroRequerant`),
+  ADD KEY `p_cin` (`p_cin`);
+
+--
+-- Indexes for table `sous_dossier`
+--
+ALTER TABLE `sous_dossier`
+  ADD PRIMARY KEY (`numeroSousDossier`),
+  ADD KEY `p_numeroDossier` (`p_numeroDossier`,`p_numeroAffaire`);
+
+--
+-- Indexes for table `terrain`
+--
+ALTER TABLE `terrain`
+  ADD PRIMARY KEY (`numeroTitre`,`immatriculationTerrain`),
+  ADD KEY `t_cin` (`t_cin`);
+
+--
+-- Indexes for table `tmpcompte`
+--
+ALTER TABLE `tmpcompte`
+  ADD PRIMARY KEY (`numeroCompte`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `bureau`
+--
+ALTER TABLE `bureau`
+  MODIFY `idBureau` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `compte`
+--
+ALTER TABLE `compte`
+  MODIFY `numeroCompte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `dossier`
+--
+ALTER TABLE `dossier`
+  MODIFY `numeroDossier` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `dossier_temporaire`
+--
+ALTER TABLE `dossier_temporaire`
+  MODIFY `idTmpDossier` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `etat_civil`
+--
+ALTER TABLE `etat_civil`
+  MODIFY `codeEtatCivil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `historique`
+--
+ALTER TABLE `historique`
+  MODIFY `numeroHisto` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+
+--
+-- AUTO_INCREMENT for table `numero_affaire_ax`
+--
+ALTER TABLE `numero_affaire_ax`
+  MODIFY `autoNumber` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `numero_affaire_v`
+--
+ALTER TABLE `numero_affaire_v`
+  MODIFY `autoNumber` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `numero_affaire_x`
+--
+ALTER TABLE `numero_affaire_x`
+  MODIFY `autoNumber` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `numero_im_ax`
+--
+ALTER TABLE `numero_im_ax`
+  MODIFY `autoNumber` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `numero_im_v`
+--
+ALTER TABLE `numero_im_v`
+  MODIFY `autoNumber` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `numero_im_x`
+--
+ALTER TABLE `numero_im_x`
+  MODIFY `autoNumber` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `procedures`
+--
+ALTER TABLE `procedures`
+  MODIFY `numeroProcedure` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+
+--
+-- AUTO_INCREMENT for table `requerant`
+--
+ALTER TABLE `requerant`
+  MODIFY `numeroRequerant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+
+--
+-- AUTO_INCREMENT for table `sous_dossier`
+--
+ALTER TABLE `sous_dossier`
+  MODIFY `numeroSousDossier` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
+-- AUTO_INCREMENT for table `terrain`
+--
+ALTER TABLE `terrain`
+  MODIFY `numeroTitre` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `tmpcompte`
+--
+ALTER TABLE `tmpcompte`
+  MODIFY `numeroCompte` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `compte`
 --
 ALTER TABLE `compte`
   ADD CONSTRAINT `compte_ibfk_1` FOREIGN KEY (`u_cin`) REFERENCES `individu` (`cin`) ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `dossier`
+-- Constraints for table `dossier`
 --
 ALTER TABLE `dossier`
   ADD CONSTRAINT `dossier_ibfk_1` FOREIGN KEY (`p_numeroRequerant`) REFERENCES `requerant` (`numeroRequerant`) ON UPDATE CASCADE,
   ADD CONSTRAINT `dossier_ibfk_2` FOREIGN KEY (`p_numeroProcedure`) REFERENCES `procedures` (`numeroProcedure`) ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `dossier_temporaire`
+-- Constraints for table `dossier_temporaire`
 --
 ALTER TABLE `dossier_temporaire`
   ADD CONSTRAINT `dossier_temporaire_ibfk_1` FOREIGN KEY (`tmp_numeroRequerant`) REFERENCES `requerant` (`numeroRequerant`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `individu`
+-- Constraints for table `individu`
 --
 ALTER TABLE `individu`
   ADD CONSTRAINT `individu_ibfk_1` FOREIGN KEY (`p_codeEtatCivil`) REFERENCES `etat_civil` (`codeEtatCivil`) ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `procedures`
+-- Constraints for table `procedures`
 --
 ALTER TABLE `procedures`
   ADD CONSTRAINT `procedures_ibfk_1` FOREIGN KEY (`p_idBureau`) REFERENCES `bureau` (`idBureau`) ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `requerant`
+-- Constraints for table `requerant`
 --
 ALTER TABLE `requerant`
   ADD CONSTRAINT `requerant_ibfk_1` FOREIGN KEY (`p_cin`) REFERENCES `individu` (`cin`) ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `sous_dossier`
+-- Constraints for table `sous_dossier`
 --
 ALTER TABLE `sous_dossier`
   ADD CONSTRAINT `sous_dossier_ibfk_1` FOREIGN KEY (`p_numeroDossier`,`p_numeroAffaire`) REFERENCES `dossier` (`numeroDossier`, `numeroAffaire`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `terrain`
+-- Constraints for table `terrain`
 --
 ALTER TABLE `terrain`
   ADD CONSTRAINT `terrain_ibfk_1` FOREIGN KEY (`t_cin`) REFERENCES `individu` (`cin`) ON UPDATE CASCADE;
