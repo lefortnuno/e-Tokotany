@@ -7,7 +7,10 @@ export default function ProfilSidebar() {
       <div className="user">
         <div className="photo">
           <img
-            src={process.env.PUBLIC_URL + `/picture/pdp/${u_info.u_photoPDP}`}
+            src={
+              process.env.REACT_APP_SUN_COMPLET_URL +
+              `uploads/${u_info.u_photoPDP}`
+            }
             alt="pdp"
           />
         </div>

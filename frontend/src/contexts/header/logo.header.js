@@ -11,14 +11,13 @@ export default function LogoHeader() {
 
   return (
     <div className="logo-header">
-      <p className="logo">
+      <div className="logo cursor-pointer"  style={{cursor:"pointer"}} onClick={() => handleLogoClick()}>
         <img
           src={`${process.env.PUBLIC_URL}/picture/logo/e-TK.png`}
           alt="Logo"
           style={{ width: "auto", height: "55px", borderRadius: "0%" }}
-          onClick={handleLogoClick}
         />
-      </p>
+      </div>
 
       {u_info?.u_token && (
         <>

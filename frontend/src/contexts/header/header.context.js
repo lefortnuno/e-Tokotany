@@ -2,6 +2,8 @@ import NotificationHeader from "./notification.header";
 import ProfilHeader from "./profil.header";
 import getDataUtilisateur from "../../api/udata";
 
+import { useNavigate } from "react-router-dom";
+
 export default function HeaderContext({
   children,
   toggleSidebar,
@@ -9,18 +11,28 @@ export default function HeaderContext({
   toggleTopbar,
   isTopbarOpen,
 }) {
+  const navigate = useNavigate();
   const u_info = getDataUtilisateur();
+
+  const handleLogoClick = () => {
+    navigate("/accueil");
+  };
+
   return (
     <>
       <div className="main-header">
         <div className="logo-header">
-          <p className="logo">
+          <div
+            className="logo"
+            style={{ cursor: "pointer" }}
+            onClick={() => handleLogoClick()}
+          >
             <img
               src={process.env.PUBLIC_URL + `/picture/logo/e-TK.png`}
               alt="pdp"
               style={{ width: "auto", height: "55px", borderRadius: "0%" }}
             />
-          </p>
+          </div>
 
           {u_info.u_token ? (
             <>

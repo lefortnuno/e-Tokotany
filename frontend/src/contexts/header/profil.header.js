@@ -31,7 +31,7 @@ export default function ProfilHeader() {
           onClick={toggleProfil}
         >
           <img
-            src={process.env.PUBLIC_URL + `/picture/pdp/${u_info.u_photoPDP}`}
+            src={process.env.REACT_APP_SUN_COMPLET_URL + `uploads/${u_info.u_photoPDP}`}
             alt="pdp"
             style={{ width: "40px", height: "40px", borderRadius: "50%" }}
           />
@@ -47,7 +47,7 @@ export default function ProfilHeader() {
               <div className="u-img">
                 <img
                   src={
-                    process.env.PUBLIC_URL + `/picture/pdp/${u_info.u_photoPDP}`
+                    process.env.REACT_APP_SUN_COMPLET_URL + `uploads/${u_info.u_photoPDP}`
                   }
                   alt="pdp"
                 />
