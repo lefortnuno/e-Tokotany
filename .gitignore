@@ -1,8 +1,6 @@
-backEnd/config/.env
-backEnd/node_modules
-
-frontEnd/.env
-frontEnd/node_modules
-frontEnd/public/picture/pdp
-
+**/.env
+**/node_modules/
+ 
+**/picture/
+.power.bat
 process/*
