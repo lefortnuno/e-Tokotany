@@ -6,7 +6,7 @@ let Bureau = function (bureau) {
   this.adressBureau = bureau.adressBureau;
 };
 
-const REQUETE_BASE = `SELECT * FROM Bureau `
+const REQUETE_BASE = `SELECT * FROM bureau `
 const ORDER_BY= ` ORDER BY idBureau ASC `
 
 Bureau.addBureau = (newBureau, result) => {

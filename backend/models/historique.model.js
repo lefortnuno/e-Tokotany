@@ -79,24 +79,24 @@ SELECT
     nom,
     prenom
 FROM
-    HISTORIQUE,
-    REQUERANT,
-    COMPTE,
-    SOUS_DOSSIER,
-    DOSSIER,
-    PROCEDURES,
-    BUREAU,
-    INDIVIDU
+    historique,
+    requerant,
+    compte,
+    sous_dossier,
+    dossier,
+    procedures,
+    bureau,
+    individu
 WHERE
-    HISTORIQUE.h_numeroAffaire = DOSSIER.numeroAffaire
-    AND HISTORIQUE.h_numeroDossier = DOSSIER.numeroDossier
-    AND HISTORIQUE.h_numeroProcedure = PROCEDURES.numeroProcedure
-    AND HISTORIQUE.p_numeroCompte = COMPTE.numeroCompte
-    AND DOSSIER.p_numeroRequerant = REQUERANT.numeroRequerant
-    AND DOSSIER.numeroAffaire = SOUS_DOSSIER.p_numeroAffaire
-    AND DOSSIER.numeroDossier = SOUS_DOSSIER.p_numeroDossier 
-    AND PROCEDURES.p_idBureau = BUREAU.idBureau
-    AND INDIVIDU.cin = REQUERANT.p_cin `;
+    historique.h_numeroAffaire = dossier.numeroAffaire
+    AND historique.h_numeroDossier = dossier.numeroDossier
+    AND historique.h_numeroProcedure = procedures.numeroProcedure
+    AND historique.p_numeroCompte = compte.numeroCompte
+    AND dossier.p_numeroRequerant = requerant.numeroRequerant
+    AND dossier.numeroAffaire = sous_dossier.p_numeroAffaire
+    AND dossier.numeroDossier = sous_dossier.p_numeroDossier 
+    AND procedures.p_idBureau = bureau.idBureau
+    AND individu.cin = requerant.p_cin `;
     
 
 const GROUP_BY = ` GROUP BY h_numeroAffaire `;
@@ -108,7 +108,7 @@ const CONDITION_RDV = ` AND ( dateRDV > '${fomatDateAujourdHui}') AND dateFinMou
 const ORDER_BY_ASC = ` ORDER BY numeroHisto ASC `;
 
 Historique.addHistorique = (newHistorique, result) => {
-  dbConn.query("INSERT INTO Historique SET ?", newHistorique, (err, res) => {
+  dbConn.query("INSERT INTO historique SET ?", newHistorique, (err, res) => {
     if (err) {
       result(err, null);
     } else {
@@ -118,7 +118,7 @@ Historique.addHistorique = (newHistorique, result) => {
 };
 
 Historique.addHistoNewDemande = (newHistorique) => {
-  dbConn.query("INSERT INTO HISTORIQUE SET ?", newHistorique);
+  dbConn.query("INSERT INTO historique SET ?", newHistorique);
 };
 
 Historique.getAllHistoriques = (result) => {
@@ -281,7 +281,7 @@ Historique.searchHistorique = (valeur, result) => {
 
 Historique.updateHistorique = (updateHistorique, id, result) => {
   dbConn.query(
-    `update Historique set ? where numeroHisto = ${id}`,
+    `update historique set ? where numeroHisto = ${id}`,
     updateHistorique,
     function (err, res) {
       if (err) {

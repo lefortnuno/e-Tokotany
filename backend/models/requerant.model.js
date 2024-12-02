@@ -18,10 +18,10 @@ SELECT
     nom,
     prenom
 FROM
-    REQUERANT,
-    INDIVIDU
+    requerant,
+    individu
 WHERE
-    REQUERANT.p_cin = INDIVIDU.cin `;
+    requerant.p_cin = individu.cin `;
 
 const ORDER_BY = ` ORDER BY numeroRequerant DESC `;
 

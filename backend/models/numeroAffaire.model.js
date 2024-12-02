@@ -6,11 +6,11 @@ let NumeroAffaire = function (numeroAffaire) {
 };
 
 NumeroAffaire.addNumeroAffaire_V = () => {
-  dbConn.query("INSERT INTO numero_affaire_V  (`autoNumber`) VALUES (NULL)");
+  dbConn.query("INSERT INTO numero_affaire_v  (`autoNumber`) VALUES (NULL)");
 };
 
 NumeroAffaire.getLastNumeroAffaire_V = (result) => {
-  dbConn.query("SELECT autoNumber FROM numero_affaire_V ORDER BY autoNumber DESC LIMIT 1", (err, resLastNumAffaire) => {
+  dbConn.query("SELECT autoNumber FROM numero_affaire_v ORDER BY autoNumber DESC LIMIT 1", (err, resLastNumAffaire) => {
     if (!err) {
       let id = 0;
       if (resLastNumAffaire.length === 0) {
@@ -27,11 +27,11 @@ NumeroAffaire.getLastNumeroAffaire_V = (result) => {
 };
 
 NumeroAffaire.addNumeroAffaire_AX = () => {
-  dbConn.query("INSERT INTO numero_affaire_AX  (`autoNumber`) VALUES (NULL)");
+  dbConn.query("INSERT INTO numero_affaire_ax  (`autoNumber`) VALUES (NULL)");
 };
 
 NumeroAffaire.getLastNumeroAffaire_AX = (result) => {
-  dbConn.query("SELECT autoNumber FROM numero_affaire_AX ORDER BY autoNumber DESC LIMIT 1", (err, resLastNumAffaire) => {
+  dbConn.query("SELECT autoNumber FROM numero_affaire_ax ORDER BY autoNumber DESC LIMIT 1", (err, resLastNumAffaire) => {
     if (!err) {
       let id = 0;
       if (resLastNumAffaire.length === 0) {
@@ -48,11 +48,11 @@ NumeroAffaire.getLastNumeroAffaire_AX = (result) => {
 };
 
 NumeroAffaire.addNumeroAffaire_X = () => {
-  dbConn.query("INSERT INTO numero_affaire_X  (`autoNumber`) VALUES (NULL)");
+  dbConn.query("INSERT INTO numero_affaire_x  (`autoNumber`) VALUES (NULL)");
 };
 
 NumeroAffaire.getLastNumeroAffaire_X = (result) => {
-  dbConn.query("SELECT autoNumber FROM numero_affaire_X ORDER BY autoNumber DESC LIMIT 1", (err, resLastNumAffaire) => {
+  dbConn.query("SELECT autoNumber FROM numero_affaire_x ORDER BY autoNumber DESC LIMIT 1", (err, resLastNumAffaire) => {
     if (!err) {
       let id = 0;
       if (resLastNumAffaire.length === 0) {

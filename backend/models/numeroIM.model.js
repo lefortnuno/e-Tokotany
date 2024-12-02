@@ -5,12 +5,12 @@ let NumeroIM = function (numeroIM) {
 };
 
 NumeroIM.addNumeroIM_V = () => {
-  dbConn.query("INSERT INTO NUMERO_IM_V (`autoNumber`) VALUES (NULL)");
+  dbConn.query("INSERT INTO numero_im_v (`autoNumber`) VALUES (NULL)");
 };
 
 NumeroIM.getLastNumeroIM_V = (result) => {
   dbConn.query(
-    "SELECT autoNumber FROM NUMERO_IM_V ORDER BY autoNumber DESC LIMIT 1",
+    "SELECT autoNumber FROM numero_im_v ORDER BY autoNumber DESC LIMIT 1",
     (err, resLastIM) => {
       if (!err) {
         let id = 0;
@@ -28,12 +28,12 @@ NumeroIM.getLastNumeroIM_V = (result) => {
 };
 
 NumeroIM.addNumeroIM_AX = () => {
-  dbConn.query("INSERT INTO NUMERO_IM_AX (`autoNumber`) VALUES (NULL)");
+  dbConn.query("INSERT INTO numero_im_ax (`autoNumber`) VALUES (NULL)");
 };
 
 NumeroIM.getLastNumeroIM_AX = (result) => {
   dbConn.query(
-    "SELECT autoNumber FROM NUMERO_IM_AX ORDER BY autoNumber DESC LIMIT 1",
+    "SELECT autoNumber FROM numero_im_ax ORDER BY autoNumber DESC LIMIT 1",
     (err, resLastIM) => {
       if (!err) {
         let id = 0;
@@ -52,12 +52,12 @@ NumeroIM.getLastNumeroIM_AX = (result) => {
 };
 
 NumeroIM.addNumeroIM_X = () => {
-  dbConn.query("INSERT INTO NUMERO_IM_X (`autoNumber`) VALUES (NULL)");
+  dbConn.query("INSERT INTO numero_im_x (`autoNumber`) VALUES (NULL)");
 };
 
 NumeroIM.getLastNumeroIM_X = (result) => {
   dbConn.query(
-    "SELECT autoNumber FROM NUMERO_IM_X ORDER BY autoNumber DESC LIMIT 1",
+    "SELECT autoNumber FROM numero_im_x ORDER BY autoNumber DESC LIMIT 1",
     (err, resLastIM) => {
       if (!err) {
         let id = 0;

@@ -13,7 +13,7 @@ let Individu = function (individu) {
   this.p_codeEtatCivil = individu.p_codeEtatCivil;
 };
 
-const REQUETE_BASE = `SELECT cin, nom, prenom, lieuNaiss, DATE_FORMAT(dateNaiss, '%d-%m-%Y') as dateNaiss, profession, domicile, DATE_FORMAT(dateLivrance, '%d-%m-%Y') as dateLivrance, lieuLivrance, p_codeEtatCivil ,  etatCivil, cinConjoint, nomConjoint, prenomConjoint, DATE_FORMAT(dateEtatCivil, '%d-%m-%Y') as dateEtatCivil, lieuEtatCivil FROM INDIVIDU, ETAT_CIVIL WHERE ETAT_CIVIL.codeEtatCivil = INDIVIDU.p_codeEtatCivil `;
+const REQUETE_BASE = `SELECT cin, nom, prenom, lieuNaiss, DATE_FORMAT(dateNaiss, '%d-%m-%Y') as dateNaiss, profession, domicile, DATE_FORMAT(dateLivrance, '%d-%m-%Y') as dateLivrance, lieuLivrance, p_codeEtatCivil ,  etatCivil, cinConjoint, nomConjoint, prenomConjoint, DATE_FORMAT(dateEtatCivil, '%d-%m-%Y') as dateEtatCivil, lieuEtatCivil FROM individu, etat_civil WHERE etat_civil.codeEtatCivil = individu.p_codeEtatCivil `;
 const ORDER_BY = ` ORDER BY p_codeEtatCivil DESC`;
 
 Individu.addIndividu = (newIndividu, result) => {

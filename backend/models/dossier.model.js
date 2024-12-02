@@ -59,16 +59,16 @@ const REQUETE_BASE =
 	ATTRIBUTS +
 	`
 FROM
-    DOSSIER,
-    SOUS_DOSSIER,
-    INDIVIDU,
-    REQUERANT,
-    PROCEDURES
+    dossier,
+    sous_dossier,
+    individu,
+    requerant,
+    procedures
 WHERE
-    DOSSIER.numeroAffaire = SOUS_DOSSIER.p_numeroAffaire
-    AND INDIVIDU.cin = REQUERANT.p_cin
-    AND REQUERANT.numeroRequerant = DOSSIER.p_numeroRequerant
-    AND PROCEDURES.numeroProcedure = DOSSIER.p_numeroProcedure `;
+    dossier.numeroAffaire = sous_dossier.p_numeroAffaire
+    AND individu.cin = requerant.p_cin
+    AND requerant.numeroRequerant = dossier.p_numeroRequerant
+    AND procedures.numeroProcedure = dossier.p_numeroProcedure `;
 
 const REQUETE_MES_DOSSIERS =
 	`SELECT
@@ -79,31 +79,31 @@ const REQUETE_MES_DOSSIERS =
 	ATTRIBUTS +
 	`
 FROM
-    DOSSIER,
-    SOUS_DOSSIER,
-    INDIVIDU,
-    REQUERANT,
-    PROCEDURES,
+    dossier,
+    sous_dossier,
+    individu,
+    requerant,
+    procedures,
     COMPTE,
     HISTORIQUE
 WHERE
-    DOSSIER.numeroAffaire = SOUS_DOSSIER.p_numeroAffaire
-    AND INDIVIDU.cin = REQUERANT.p_cin
-    AND REQUERANT.numeroRequerant = DOSSIER.p_numeroRequerant
-    AND PROCEDURES.numeroProcedure = DOSSIER.p_numeroProcedure
-    AND HISTORIQUE.h_numeroAffaire = DOSSIER.numeroAffaire
-    AND HISTORIQUE.h_numeroDossier = DOSSIER.numeroDossier
-    AND HISTORIQUE.h_numeroProcedure = PROCEDURES.numeroProcedure
+    dossier.numeroAffaire = sous_dossier.p_numeroAffaire
+    AND individu.cin = requerant.p_cin
+    AND requerant.numeroRequerant = dossier.p_numeroRequerant
+    AND procedures.numeroProcedure = dossier.p_numeroProcedure
+    AND HISTORIQUE.h_numeroAffaire = dossier.numeroAffaire
+    AND HISTORIQUE.h_numeroDossier = dossier.numeroDossier
+    AND HISTORIQUE.h_numeroProcedure = procedures.numeroProcedure
     AND HISTORIQUE.p_numeroCompte = COMPTE.numeroCompte
     AND (numeroCompte = ? AND identification = ?) `;
 
 	const REQUETE_MES_DOSSIERS_USAGERS = `
 	SELECT numeroDossier, numeroAffaire, nom, p_numeroProcedure
-	FROM DOSSIER,  INDIVIDU, REQUERANT,  COMPTE
+	FROM dossier,  individu, requerant,  COMPTE
 	WHERE 
-	COMPTE.u_cin = INDIVIDU.cin
-	AND INDIVIDU.cin = REQUERANT.p_cin
-	AND REQUERANT.numeroRequerant = DOSSIER.p_numeroRequerant    
+	COMPTE.u_cin = individu.cin
+	AND individu.cin = requerant.p_cin
+	AND requerant.numeroRequerant = dossier.p_numeroRequerant    
 	AND (numeroCompte = ? AND identification = ?) ORDER BY numeroDossier DESC `;
 
 const REQUETE_NOUVELLE_DEMANDE = REQUETE_BASE + ` AND p_numeroProcedure=1 `;
@@ -169,7 +169,7 @@ Dossier.getDossiersNouvelleDemande = (result) => {
 };
 
 Dossier.getDerniereDossier = (result) => {
-	dbConn.query(`SELECT * FROM DOSSIER ` + ORDER_BY + ` LIMIT 1`, (err, res) => {
+	dbConn.query(`SELECT * FROM dossier ` + ORDER_BY + ` LIMIT 1`, (err, res) => {
 		if (err) {
 			result(err, null);
 		} else {

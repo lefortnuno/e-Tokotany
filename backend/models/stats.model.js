@@ -25,7 +25,7 @@ function toMonthName(monthNumber) {
   });
 }
 
-// -- STATS DE TEMPS PERDU PAR CHQ PROCEDURES PAR MOIS, EN QUELLE MOIS FaUT IL COMMEMNCER OHATRA.
+// -- STATS DE TEMPS PERDU PAR CHQ procedures PAR MOIS, EN QUELLE MOIS FaUT IL COMMEMNCER OHATRA.
 const ALL_STATS_PROCEDURE_MONTH = `
   SELECT
       DATE_FORMAT(dateDebutMouvement, '%m') as Mois,
@@ -42,21 +42,21 @@ const ALL_STATS_PROCEDURE_MONTH = `
       AVG(IF(h_numeroProcedure = 11, DATEDIFF(dateFinMouvement, dateDebutMouvement), NULL)) as "MUTATION", 
       AVG(IF(h_numeroProcedure = 69, DATEDIFF(dateFinMouvement, dateDebutMouvement), NULL)) as "AVC"
   FROM
-      HISTORIQUE
+      historique
   GROUP BY
       MONTH(dateDebutMouvement) `;
 
-// -- STATS DE TEMPS PERDU PAR CHQ PROCEDURES
+// -- STATS DE TEMPS PERDU PAR CHQ procedures
 const STATS_TEMPS_PERDU_PROCEDURE = `
 SELECT 
     nomProcedure,
     AVG(DATEDIFF(dateFinMouvement, dateDebutMouvement)) as nombreJour
     --  SUM(DATEDIFF(dateFinMouvement, dateDebutMouvement)) as nombreJour
 FROM
-    HISTORIQUE,
-    PROCEDURES
+    historique,
+    procedures
 WHERE
-    PROCEDURES.numeroProcedure = HISTORIQUE.h_numeroProcedure
+    procedures.numeroProcedure = historique.h_numeroProcedure
 GROUP BY
     h_numeroProcedure `;
 
@@ -68,7 +68,7 @@ SELECT
     COUNT(IF(h_numeroAffaire LIKE '%AX%', 1, NULL)) as "AX",
     COUNT(IF(h_numeroAffaire LIKE '%X%', 1, NULL)) as "X"
 FROM
-    HISTORIQUE
+    historique
 GROUP BY
     MONTH(dateDebutMouvement)`;
 
@@ -78,10 +78,10 @@ SELECT
     nomProcedure,
     SUM(DATEDIFF(dateFinMouvement, dateDebutMouvement)) as nombreJour
 FROM
-    HISTORIQUE,
-    PROCEDURES
+    historique,
+    procedures
 WHERE
-    PROCEDURES.numeroProcedure = HISTORIQUE.h_numeroProcedure
+    procedures.numeroProcedure = historique.h_numeroProcedure
     AND h_numeroDossier = ?
 GROUP BY
     h_numeroProcedure ;

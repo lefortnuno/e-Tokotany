@@ -10,7 +10,7 @@ const Procedure = function (procedure) {
   this.p_idBureau = procedure.p_idBureau;
 };
 
-const REQUETE_BASE = `SELECT numeroProcedure, nomProcedure, natureProcedure, movProcedure, p_idBureau, nomBureau, adressBureau FROM PROCEDURES, BUREAU WHERE PROCEDURES.p_idBureau = BUREAU.idBureau `
+const REQUETE_BASE = `SELECT numeroProcedure, nomProcedure, natureProcedure, movProcedure, p_idBureau, nomBureau, adressBureau FROM procedures, bureau WHERE procedures.p_idBureau = bureau.idBureau `
 const ORDER_BY = ` ORDER BY numeroProcedure ASC `
 
 
