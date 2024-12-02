@@ -1,40 +1,46 @@
 import getDataUtilisateur from "../../api/udata";
+import { useNavigate } from "react-router-dom";
 
 export default function LogoHeader() {
+  const navigate = useNavigate();
   const u_info = getDataUtilisateur();
+
+  const handleLogoClick = () => {
+    navigate("/accueil");
+  };
+
   return (
-    <>
-      <div className="logo-header">
-        <p className="logo">
-          <img
-            src={process.env.PUBLIC_URL + `/picture/logo/e-TK.png`}
-            alt="pdp"
-            style={{ width: "auto", height: "55px", borderRadius: "0%" }}
-          />
-        </p>
+    <div className="logo-header">
+      <p className="logo">
+        <img
+          src={`${process.env.PUBLIC_URL}/picture/logo/e-TK.png`}
+          alt="Logo"
+          style={{ width: "auto", height: "55px", borderRadius: "0%" }}
+          onClick={handleLogoClick}
+        />
+      </p>
 
-        {u_info.u_token ? (
-          <>
-            {/* Toggle For Sidebar  */}
-            <button
-              className="navbar-toggler sidenav-toggler ml-auto "
-              type="button"
-              data-toggle="collapse"
-              data-target="collapse"
-              aria-controls="sidebar"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon "> </span>
-            </button>
+      {u_info?.u_token && (
+        <>
+          {/* Sidebar Toggle */}
+          <button
+            className="navbar-toggler sidenav-toggler ml-auto"
+            type="button"
+            data-toggle="collapse"
+            data-target="#sidebar"
+            aria-controls="sidebar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
-            {/* Toggle For Profil  */}
-            <button className="topbar-toggler more monToggleoption">
-              <i className="la la-ellipsis-v"></i>
-            </button>
-          </>
-        ) : null}
-      </div>
-    </>
+          {/* Profile Options Toggle */}
+          <button className="topbar-toggler more monToggleoption">
+            <i className="la la-ellipsis-v"></i>
+          </button>
+        </>
+      )}
+    </div>
   );
 }
