@@ -104,7 +104,7 @@ Individu.updateIndividu = (updateIndividu, cin, result) => {
 
 Individu.deleteIndividu = (cin, result) => {
   dbConn.query(
-    `DELETE FROM Individu WHERE cin = ${cin}`,
+    `DELETE FROM individu WHERE cin = ${cin}`,
     function (err, res) {
       if (err) {
         result(err, null);
