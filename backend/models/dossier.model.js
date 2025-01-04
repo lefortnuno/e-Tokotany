@@ -85,16 +85,16 @@ FROM
     requerant,
     procedures,
     compte,
-    historque
+    historique
 WHERE
     dossier.numeroAffaire = sous_dossier.p_numeroAffaire
     AND individu.cin = requerant.p_cin
     AND requerant.numeroRequerant = dossier.p_numeroRequerant
     AND procedures.numeroProcedure = dossier.p_numeroProcedure
-    AND historque.h_numeroAffaire = dossier.numeroAffaire
-    AND historque.h_numeroDossier = dossier.numeroDossier
-    AND historque.h_numeroProcedure = procedures.numeroProcedure
-    AND historque.p_numeroCompte = compte.numeroCompte
+    AND historique.h_numeroAffaire = dossier.numeroAffaire
+    AND historique.h_numeroDossier = dossier.numeroDossier
+    AND historique.h_numeroProcedure = procedures.numeroProcedure
+    AND historique.p_numeroCompte = compte.numeroCompte
     AND (numeroCompte = ? AND identification = ?) `;
 
 	const REQUETE_MES_DOSSIERS_USAGERS = `
