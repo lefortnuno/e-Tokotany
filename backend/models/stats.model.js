@@ -85,11 +85,11 @@ WHERE
     AND h_numeroDossier = ?
 GROUP BY
     h_numeroProcedure ;
-`
+`;
 
 Stat.getAllStatsProcedureByMonth = (result) => {
   dbConn.query(ALL_STATS_PROCEDURE_MONTH, (err, res) => {
-    if (err) { 
+    if (err) {
       result(err, null);
     } else {
       //stoquer les mois(en lettre) du stats
@@ -222,7 +222,7 @@ Stat.getAllStatsProcedureByMonth = (result) => {
         data.push(dataObj);
       }
 
-      // Je renvoie mon DATA au Front 
+      // Je renvoie mon DATA au Front
       result(null, data);
     }
   });
@@ -230,63 +230,44 @@ Stat.getAllStatsProcedureByMonth = (result) => {
 
 Stat.getTempsPerduOfDossierByProcedure = (numeroDossier, result) => {
   dbConn.query(STATS_SINGLE_DOSSIER, numeroDossier, (err, res) => {
-    if (err) { 
+    if (err) {
       result(err, null);
     } else {
-      //stoquer les mois(en lettre) du stats
       const labels = [];
-
-      //stoquer les mois(en chiffre) du stats
       const mois = [];
-
-      //ce VALUES va ordonner toutes les donnees selon leur mois
       const values1 = [];
 
-      //stoquer les donnee du stats
       const donnee = [];
       let obj1 = {};
 
-      //stoquer les donnee de retour
       const data = [];
 
       if (res.length !== 0) {
-        //pour chaque element du resultat du mysql dans RES
         res.forEach((element) => {
-          //pour chaque element du variable ELEMENT de chq ligne, je les stock dans M
           for (const m in element) {
-            // Recuperation des mois disponible
             if (m === "nomProcedure") {
-              //element[m] design la valeur du mois en chiffre, je les stock dans MOIS
               mois.push(element[m]);
             }
 
-            // Recuperation des valeur correspondant a chq mois
             if (m === "nombreJour") {
               values1.push(element[m]);
             }
           }
         });
 
-        // je stock chq VALUES dans OBJ
         obj1 = Object.assign(obj1, { values: values1 });
 
-        // puis j'ajout OBJ a l'array DONNEE
         donnee.push(obj1);
-        // pour avoir un format de donnee DONNE[0] = Tableau de plusieur Objet
 
         mois.forEach((e) => {
-          // je stock la valeur des mois en lettre dans labels
           labels.push(e);
         });
 
-        //   j'ajoute mes 02 array dans l'Objet DATAOBJ
         const dataObj = { labels, data: donnee };
 
-        //   j'ajoute l'Objet DATAOBJ dans l'Array DATA
         data.push(dataObj);
       }
 
-      // Je renvoie mon DATA au Front 
       result(null, data);
     }
   });
@@ -294,63 +275,44 @@ Stat.getTempsPerduOfDossierByProcedure = (numeroDossier, result) => {
 
 Stat.getTempsPerduByProcedure = (result) => {
   dbConn.query(STATS_TEMPS_PERDU_PROCEDURE, (err, res) => {
-    if (err) { 
+    if (err) {
       result(err, null);
     } else {
-      //stoquer les mois(en lettre) du stats
       const labels = [];
 
-      //stoquer les mois(en chiffre) du stats
       const mois = [];
 
-      //ce VALUES va ordonner toutes les donnees selon leur mois
       const values1 = [];
 
-      //stoquer les donnee du stats
       const donnee = [];
       let obj1 = {};
 
-      //stoquer les donnee de retour
       const data = [];
 
       if (res.length !== 0) {
-        //pour chaque element du resultat du mysql dans RES
         res.forEach((element) => {
-          //pour chaque element du variable ELEMENT de chq ligne, je les stock dans M
           for (const m in element) {
-            // Recuperation des mois disponible
             if (m === "nomProcedure") {
-              //element[m] design la valeur du mois en chiffre, je les stock dans MOIS
               mois.push(element[m]);
             }
 
-            // Recuperation des valeur correspondant a chq mois
             if (m === "nombreJour") {
               values1.push(element[m]);
             }
           }
         });
 
-        // je stock chq VALUES dans OBJ
         obj1 = Object.assign(obj1, { values: values1 });
-
-        // puis j'ajout OBJ a l'array DONNEE
         donnee.push(obj1);
-        // pour avoir un format de donnee DONNE[0] = Tableau de plusieur Objet
 
         mois.forEach((e) => {
-          // je stock la valeur des mois en lettre dans labels
           labels.push(e);
         });
 
-        //   j'ajoute mes 02 array dans l'Objet DATAOBJ
         const dataObj = { labels, data: donnee };
 
-        //   j'ajoute l'Objet DATAOBJ dans l'Array DATA
         data.push(dataObj);
       }
-
-      // Je renvoie mon DATA au Front 
       result(null, data);
     }
   });
@@ -358,41 +320,29 @@ Stat.getTempsPerduByProcedure = (result) => {
 
 Stat.getStatsBySigle = (result) => {
   dbConn.query(STATS_SIGLE, (err, res) => {
-    if (err) { 
+    if (err) {
       result(err, null);
     } else {
-      //stoquer les mois(en lettre) du stats
       const labels = [];
-
-      //stoquer les mois(en chiffre) du stats
       const mois = [];
-
-      //ce VALUES va ordonner toutes les donnees selon leur mois
       const values1 = [];
       const values2 = [];
       const values3 = [];
 
-      //stoquer les donnee du stats
       const donnee = [];
       let obj1 = {};
       let obj2 = {};
       let obj3 = {};
 
-      //stoquer les donnee de retour
       const data = [];
 
       if (res.length !== 0) {
-        //pour chaque element du resultat du mysql dans RES
         res.forEach((element) => {
-          //pour chaque element du variable ELEMENT de chq ligne, je les stock dans M
           for (const m in element) {
-            // Recuperation des mois disponible
             if (m === "Mois") {
-              //element[m] design la valeur du mois en chiffre, je les stock dans MOIS
               mois.push(element[m]);
             }
 
-            // Recuperation des valeur correspondant a chq mois
             if (m === "V") {
               values1.push(element[m]);
             }
@@ -405,30 +355,23 @@ Stat.getStatsBySigle = (result) => {
           }
         });
 
-        // je stock chq VALUES dans OBJ
         obj1 = Object.assign(obj1, { values: values1 });
         obj2 = Object.assign(obj2, { values: values2 });
         obj3 = Object.assign(obj3, { values: values3 });
 
-        // puis j'ajout OBJ a l'array DONNEE
         donnee.push(obj1);
         donnee.push(obj2);
         donnee.push(obj3);
-        // pour avoir un format de donnee DONNE[0] = Tableau de plusieur Objet
 
         mois.forEach((e) => {
-          // je stock la valeur des mois en lettre dans labels
           labels.push(toMonthName(e));
         });
 
-        //   j'ajoute mes 02 array dans l'Objet DATAOBJ
         const dataObj = { labels, data: donnee };
 
-        //   j'ajoute l'Objet DATAOBJ dans l'Array DATA
         data.push(dataObj);
       }
 
-      // Je renvoie mon DATA au Front 
       result(null, data);
     }
   });

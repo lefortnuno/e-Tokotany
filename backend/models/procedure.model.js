@@ -18,7 +18,7 @@ Procedure.addProcedure = (newProcedure, result) => {
     Bureau.getIdBureau(newProcedure.p_idBureau, (err, resBureau) => {
       if (resBureau) {
         dbConn.query(
-          "INSERT INTO Procedures SET ?",
+          "INSERT INTO procedures SET ?",
           newProcedure,
           (err, res) => {
             if (err) {
@@ -56,7 +56,7 @@ Procedure.getIdProcedure = (id, result) => {
 
 Procedure.updateProcedure = (updateProcedure, id, result) => {
   dbConn.query(
-    `update Procedures set ? where numeroProcedure = ${id}`,
+    `update procedures set ? where numeroProcedure = ${id}`,
     updateProcedure,
     function (err, res) {
       if (err) {

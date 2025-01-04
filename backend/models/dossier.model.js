@@ -84,24 +84,24 @@ FROM
     individu,
     requerant,
     procedures,
-    COMPTE,
-    HISTORIQUE
+    compte,
+    historque
 WHERE
     dossier.numeroAffaire = sous_dossier.p_numeroAffaire
     AND individu.cin = requerant.p_cin
     AND requerant.numeroRequerant = dossier.p_numeroRequerant
     AND procedures.numeroProcedure = dossier.p_numeroProcedure
-    AND HISTORIQUE.h_numeroAffaire = dossier.numeroAffaire
-    AND HISTORIQUE.h_numeroDossier = dossier.numeroDossier
-    AND HISTORIQUE.h_numeroProcedure = procedures.numeroProcedure
-    AND HISTORIQUE.p_numeroCompte = COMPTE.numeroCompte
+    AND historque.h_numeroAffaire = dossier.numeroAffaire
+    AND historque.h_numeroDossier = dossier.numeroDossier
+    AND historque.h_numeroProcedure = procedures.numeroProcedure
+    AND historque.p_numeroCompte = compte.numeroCompte
     AND (numeroCompte = ? AND identification = ?) `;
 
 	const REQUETE_MES_DOSSIERS_USAGERS = `
 	SELECT numeroDossier, numeroAffaire, nom, p_numeroProcedure
-	FROM dossier,  individu, requerant,  COMPTE
+	FROM dossier,  individu, requerant,  compte
 	WHERE 
-	COMPTE.u_cin = individu.cin
+	compte.u_cin = individu.cin
 	AND individu.cin = requerant.p_cin
 	AND requerant.numeroRequerant = dossier.p_numeroRequerant    
 	AND (numeroCompte = ? AND identification = ?) ORDER BY numeroDossier DESC `;
